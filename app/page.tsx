@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const page = () => {
   return (
     <div>
-      <h1>hello wolrd</h1>
+      <h1>hi 123123</h1>
     </div>
   );
 };
