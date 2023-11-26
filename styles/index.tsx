@@ -11,3 +11,17 @@ export const NewButton = styled.button`
   border-radius: 0.4rem;
   cursor: pointer;
 `;
+
+export const AppLogo = styled.a`
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+export const NavbarLink = styled.button`
+  font-size: 1rem;
+  font-weight: 500;
+
+  &:hover {
+    color: #f8b133;
+  }
+`;
