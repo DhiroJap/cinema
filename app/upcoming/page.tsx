@@ -1,3 +1,9 @@
+import { Page } from '@/styles';
+
 export default function Upcoming() {
-  return <h1>Upcoming Page</h1>;
+  return (
+    <Page>
+      <h1>Upcoming Page</h1>
+    </Page>
+  );
 }

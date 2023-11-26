@@ -11,8 +11,13 @@ const config: Config = {
       primary: '#1a1a1a',
       navbar: '#131313',
       'customgray-1': '#4c4c4c',
+      'customgray-2': '#b8b8b8',
     },
-    extend: {},
+    extend: {
+      spacing: {
+        '200': '50rem',
+      },
+    },
   },
   plugins: [],
 };

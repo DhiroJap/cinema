@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ReduxProvider } from '@/redux/provider';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/shared/navbar';
 
 export const metadata: Metadata = {
   title: 'Cinema',

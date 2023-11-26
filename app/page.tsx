@@ -1,11 +1,9 @@
 'use client';
 
 import { selectMovies, setMovies } from '@/redux/slices/moviesSlice';
-import { store } from '@/redux/store';
-import { NewButton } from '@/styles';
+import { NewButton, Page } from '@/styles';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { Provider } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Home() {
@@ -45,10 +43,10 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <main className='m-3'>
+    <Page className='m-3 flex flex-col gap-4'>
       <h1>Home Page</h1>
       <h2>Movies: </h2>
-      <ul>
+      <ul className='flex flex-col gap-6'>
         {movies.map((movie) => (
           <Link href={`/movies/${movie.id}`} key={movie.id} legacyBehavior>
             <a>
@@ -57,6 +55,6 @@ export default function Home() {
           </Link>
         ))}
       </ul>
-    </main>
+    </Page>
   );
 }
