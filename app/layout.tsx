@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ReduxProvider } from '@/redux/provider';
 import Navbar from '@/components/shared/navbar';
+import Footer from '@/components/shared/footer';
 
 export const metadata: Metadata = {
   title: 'GALAXY CINEMA - Now Playing',
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <ReduxProvider>{children}</ReduxProvider>
+        <Footer />
       </body>
     </html>
   );
