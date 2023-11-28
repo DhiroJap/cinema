@@ -1,13 +1,22 @@
 import { Page } from '@/styles';
-import mockMovies from '@/__mocks__/movies';
 import MovieList from '@/components/movies/movielist';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'GALAXY CINEMA - Now Playing',
+  description: 'Now Playing Page',
+};
 
 export default function Home() {
   return (
-    <Page className='m-3 flex flex-col gap-4'>
+    <Page
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      className='flex-col'
+    >
       <h1>Now Playing</h1>
-      {/* <h2>Movies: </h2> */}
-      <MovieList movies={mockMovies} />
+      <MovieList />
     </Page>
   );
 }

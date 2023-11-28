@@ -1,5 +1,6 @@
-import { Metadata } from 'next';
 import { Page } from '@/styles';
+import { Metadata } from 'next';
+
 
 
 export const metadata: Metadata = {
@@ -8,6 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  return (
+    <Page display='flex' justifyContent='center' alignItems='center'>
+      <h1>About Page</h1>
+    </Page>
+  );
   return(
     <>
     <Page justifyContent='center' alignItems='center' >

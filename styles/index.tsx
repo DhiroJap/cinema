@@ -85,3 +85,19 @@ export const InputLabel = styled.label`
   font-size: 14px;
   margin: 4px 0;
 `;
+
+export const Select = styled.select`
+  background-color: #131313;
+  color: #8f8f8f;
+  font-size: 14px;
+  margin: 4px 0;
+`;
+
+export const FooterLink = styled.button`
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  &:hover {
+    color: #22a39f;
+  }
+`;
