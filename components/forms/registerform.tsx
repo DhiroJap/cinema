@@ -11,7 +11,6 @@ export default function RegisterForm() {
       </InputContainer>
 
       <section className='flex justify-between gap-4'>
-
         <InputContainer>
           <InputLabel htmlFor='phoneNumber'>Phone Number</InputLabel>
           <InputField type='number' inputMode='numeric' id='phoneNumber' />
@@ -25,6 +24,11 @@ export default function RegisterForm() {
           </select>
         </InputContainer>
       </section>
+
+      <InputContainer>
+        <InputLabel htmlFor='birthDate'>Birth Date</InputLabel>
+        <InputField type='date' id='date' />
+      </InputContainer>
 
       <InputContainer>
         <InputLabel htmlFor='email'>Email</InputLabel>
