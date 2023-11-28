@@ -1,31 +1,28 @@
 'use client';
 
-import { selectMovieById } from '@/redux/slices/moviesSlice';
-import { RootState } from '@/redux/store';
-import { NewButton } from '@/styles';
-import Link from 'next/link';
+import { MovieType } from '@/utils/types';
+import MovieDetails from '@/components/movies/moviedetails';
+import mockMovies from '@/__mocks__/movies';
 import { useParams } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { Page } from '@/styles';
 
-export default function MovieDetails() {
-  const { id } = useParams<{ id: string }>();
-  const movie = useSelector((state: RootState) => selectMovieById(state, id));
+const MovieDetailsPage = () => {
+  const params = useParams();
+  const { id } = params;
+
+  const movie: MovieType | undefined = mockMovies.find(
+    (m) => m.id === Number(id)
+  );
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div>Movie not found</div>;
   }
 
-  const { title, producer } = movie;
-
   return (
-    <main className='m-3'>
-      <h1>Movie Details: </h1>
-      <p>ID: {id}</p>
-      <p>Title: {title}</p>
-      <p>Producer: {producer}</p>
-      <Link href='/' legacyBehavior>
-        <NewButton>Back</NewButton>
-      </Link>
-    </main>
+    <Page display='flex' justifyContent='center' alignItems='center'>
+      <MovieDetails movie={movie} />
+    </Page>
   );
-}
+};
+
+export default MovieDetailsPage;
