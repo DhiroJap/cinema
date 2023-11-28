@@ -85,3 +85,10 @@ export const InputLabel = styled.label`
   font-size: 14px;
   margin: 4px 0;
 `;
+
+export const select = styled.select`
+backround-color: #131313; 
+color: #8f8f8f;
+font-size: 14px;
+margin: 4px 0;
+`;
