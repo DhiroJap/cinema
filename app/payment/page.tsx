@@ -1,16 +1,16 @@
-import LoginForm from '@/components/forms/loginform';
 import { Page } from '@/styles';
 import { Metadata } from 'next';
+import PaymentForm from '@/components/forms/paymentform';
 
 export const metadata: Metadata = {
-  title: 'GALAXY CINEMA - Login',
-  description: 'Login Page',
+  title: 'GALAXY CINEMA - Payment',
+  description: 'Payment Page',
 };
 
-export default function Login() {
+export default function Payment() {
   return (
     <Page display='flex' $justifyContent='center' $alignItems='center'>
-      <LoginForm />
+      <PaymentForm />
     </Page>
   );
 }

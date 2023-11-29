@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <Page
       display='flex'
-      justifyContent='center'
-      alignItems='center'
+      $justifyContent='center'
+      $alignItems='center'
       className='flex-col'
     >
       <h1>Now Playing</h1>

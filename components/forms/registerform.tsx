@@ -1,10 +1,21 @@
-import { InputContainer, InputField, InputLabel, NewButton} from '@/styles';
+import { changeGender } from '@/redux/slices/extraSlice';
+import { AppDispatch, RootState } from '@/redux/store';
+import {
+  InputContainer,
+  InputField,
+  InputLabel,
+  NewButton,
+  RegisterSelect,
+} from '@/styles';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function RegisterForm() {
+  const extra = useSelector((state: RootState) => state.extra);
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <form className='w-200 flex flex-col gap-2'>
-
       <InputContainer>
         <InputLabel htmlFor='fullName'>Full Name</InputLabel>
         <InputField type='text' id='fullName' />
@@ -16,12 +27,21 @@ export default function RegisterForm() {
           <InputField type='number' inputMode='numeric' id='phoneNumber' />
         </InputContainer>
 
-        <InputContainer>
-          <InputLabel htmlFor='gender'>Gender</InputLabel>
-          <select>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-          </select>
+        <InputContainer className='flex'>
+          <section>
+            <InputLabel htmlFor='gender'>Gender</InputLabel>
+            <RegisterSelect
+              name='gender'
+              id='gender'
+              onChange={(e) => {
+                dispatch(changeGender(e.target.value));
+              }}
+            >
+              <option value='Male'>Male</option>
+              <option value='Female'>Female</option>
+            </RegisterSelect>
+          </section>
+          <h1 className='text-2xl m-auto'>{extra.gender}</h1>
         </InputContainer>
       </section>
 
@@ -41,7 +61,7 @@ export default function RegisterForm() {
       </InputContainer>
 
       <NewButton>Register Account</NewButton>
-      
+
       <div>
         <span>Already have an account? </span>
         <Link href='/login'>

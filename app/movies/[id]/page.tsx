@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const MovieDetailsPage = () => {
   return (
-    <Page display='flex' justifyContent='center' alignItems='center'>
+    <Page display='flex' $justifyContent='center' $alignItems='center'>
       <MovieDetails />
     </Page>
   );

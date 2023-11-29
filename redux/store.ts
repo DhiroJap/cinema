@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import movieReducer from './slices/moviesSlice';
+'use client';
 
+import { configureStore } from '@reduxjs/toolkit';
+import extraSlice from './slices/extraSlice';
 export const store = configureStore({
   reducer: {
-    movies: movieReducer,
+    extra: extraSlice,
   },
 });
 

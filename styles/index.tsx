@@ -7,8 +7,8 @@ export const Page = styled.div<PageProps>`
   height: 100%;
   background-color: #1a1a1a;
   display: ${(props) => props.display};
-  justify-content: ${(props) => props.justifyContent};
-  align-items: ${(props) => props.alignItems};
+  justify-content: ${(props) => props.$justifyContent};
+  align-items: ${(props) => props.$alignItems};
 `;
 
 export const NewButton = styled.button`
@@ -86,7 +86,7 @@ export const InputLabel = styled.label`
   margin: 4px 0;
 `;
 
-export const Select = styled.select`
+export const RegisterSelect = styled.select`
   background-color: #131313;
   color: #8f8f8f;
   font-size: 14px;
@@ -101,20 +101,20 @@ export const FooterLink = styled.button`
     color: #22a39f;
   }
 `;
+
 export const AboutDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
-  text-align: justify; 
-  max-width: 800px; 
-  margin: auto; 
-  padding: 20px; 
-  
-  h1{
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+
+  h1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
   }
-
 `;
