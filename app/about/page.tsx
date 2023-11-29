@@ -1,5 +1,6 @@
 import { Page } from '@/styles';
 import { Metadata } from 'next';
+import {AboutDiv} from '@/styles';
 
 
 
@@ -11,9 +12,8 @@ export const metadata: Metadata = {
 export default function About() {
   return(
     <>
-    <Page justifyContent='center' alignItems='center' >
-
-    <h1 className='title'>Test</h1>
+    <AboutDiv>
+    <h1 className='title font-bold'>GALAXY CINEMA</h1>
     <img src="https://21cineplex.com//theme/v5/assets/img/detail-cinema-1.jpg" alt="cinema-img" width= "1000" height= '400'/>
     <br />
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, fuga explicabo? Quas, tempora! Pariatur accusamus hic dolore laboriosam esse vero iure quia eius, illum praesentium autem molestias, ipsum necessitatibus voluptatibus?
@@ -23,7 +23,7 @@ export default function About() {
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quaerat pariatur dolores magnam natus ipsum consequatur, laudantium placeat iure hic libero dignissimos, excepturi quod saepe! Esse nostrum sit magnam ipsa!
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident porro fuga tempora deserunt possimus quam perferendis ea, sunt id! Suscipit rerum ab maxime quasi eveniet neque assumenda a culpa aspernatur?
     </p>
-    </Page>
+    </AboutDiv>
    
     </>
   )

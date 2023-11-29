@@ -101,3 +101,20 @@ export const FooterLink = styled.button`
     color: #22a39f;
   }
 `;
+export const AboutDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: justify; 
+  max-width: 800px; 
+  margin: auto; 
+  padding: 20px; 
+  
+  h1{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+`;
