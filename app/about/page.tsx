@@ -1,8 +1,6 @@
 import { Page } from '@/styles';
 import { Metadata } from 'next';
 
-
-
 export const metadata: Metadata = {
   title: 'GALAXY CINEMA - About Us',
   description: 'About Page',
@@ -13,7 +11,7 @@ export default function About() {
     <>
     <Page justifyContent='center' alignItems='center' >
 
-    <h1 className='title'>Test</h1>
+    <h1 className='title'>About Us:</h1>
     <img src="https://21cineplex.com//theme/v5/assets/img/detail-cinema-1.jpg" alt="cinema-img" width= "1000" height= '400'/>
     <br />
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, fuga explicabo? Quas, tempora! Pariatur accusamus hic dolore laboriosam esse vero iure quia eius, illum praesentium autem molestias, ipsum necessitatibus voluptatibus?
@@ -24,7 +22,6 @@ export default function About() {
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident porro fuga tempora deserunt possimus quam perferendis ea, sunt id! Suscipit rerum ab maxime quasi eveniet neque assumenda a culpa aspernatur?
     </p>
     </Page>
-   
     </>
   )
 }

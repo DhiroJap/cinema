@@ -1,4 +1,4 @@
-import { InputContainer, InputField, InputLabel, NewButton, select } from '@/styles';
+import { InputContainer, InputField, InputLabel, NewButton} from '@/styles';
 import Link from 'next/link';
 
 export default function RegisterForm() {
@@ -41,6 +41,7 @@ export default function RegisterForm() {
       </InputContainer>
 
       <NewButton>Register Account</NewButton>
+      
       <div>
         <span>Already have an account? </span>
         <Link href='/login'>
