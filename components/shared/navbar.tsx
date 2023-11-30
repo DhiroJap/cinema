@@ -17,7 +17,7 @@ export default function Navbar() {
           <div className={`${flexBetween} w-full gap-16`}>
             {/* Left Side */}
             <div className={`${flexBetween} gap-10`}>
-              <AppLogo>
+              <AppLogo onClick={() => router.push('/')}>
                 <span>GALAXY</span> CINEMA
               </AppLogo>
             </div>

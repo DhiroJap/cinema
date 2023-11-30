@@ -33,7 +33,7 @@ export const NewButton = styled.button`
   }
 `;
 
-export const AppLogo = styled.a`
+export const AppLogo = styled.button`
   font-size: 2rem;
   font-weight: bold;
   color: #f3efe0;
@@ -41,6 +41,8 @@ export const AppLogo = styled.a`
   > span {
     color: #22a39f;
   }
+
+  
 `;
 
 export const NavbarLink = styled.button`
@@ -111,10 +113,12 @@ export const AboutDiv = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
+  font-family: 'Inter';
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
+    font-family: 'Inter';
   }
 `;
