@@ -4,11 +4,13 @@ import { PageProps } from '@/utils/types';
 import styled from 'styled-components';
 
 export const Page = styled.div<PageProps>`
-  height: 100%;
+  min-height: 100vh;
   background-color: #1a1a1a;
   display: ${(props) => props.display};
   justify-content: ${(props) => props.$justifyContent};
   align-items: ${(props) => props.$alignItems};
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 `;
 
 export const NewButton = styled.button`
@@ -41,8 +43,6 @@ export const AppLogo = styled.button`
   > span {
     color: #22a39f;
   }
-
-  
 `;
 
 export const NavbarLink = styled.button`
@@ -121,4 +121,19 @@ export const AboutDiv = styled.div`
     margin-bottom: 20px;
     font-family: 'Inter';
   }
+`;
+
+export const NowPlayingTag = styled.button`
+  background-color: #22a39f;
+  color: #ffffff;
+  padding: 0.4rem;
+  width: 10rem;
+  font-weight: 600;
+`;
+
+export const MovieRating = styled.button`
+  color: #ffffff;
+  padding: 0.2rem;
+  width: 5rem;
+  font-weight: 600;
 `;

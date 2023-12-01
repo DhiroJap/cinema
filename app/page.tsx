@@ -9,14 +9,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <Page
-      display='flex'
-      $justifyContent='center'
-      $alignItems='center'
-      className='flex-col'
-    >
-      <h1>Now Playing</h1>
-      <MovieList />
+    <Page display='flex' $justifyContent='center' className='my-20'>
+      <section className='mb-20'>
+        <MovieList />
+      </section>
     </Page>
   );
 }

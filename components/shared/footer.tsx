@@ -1,14 +1,14 @@
 'use client';
 
-import { FooterLink, NavbarLink } from '@/styles';
+import { FooterLink } from '@/styles';
 import { useRouter } from 'next/navigation';
 
 export default function Footer() {
   const router = useRouter();
 
   return (
-    <footer>
-      <div className='bg-navbar flex flex-col justify-between items-center border-t-2 border-t-customgray-1 p-6 gap-6'>
+    <footer className='mb-24'>
+      <div className='bg-navbar px-6 flex flex-col justify-between items-center border-t-2 border-t-customgray-1 p-6 gap-6'>
         <div className='flex gap-6'>
           <FooterLink onClick={() => router.push('/')}>Now Playing</FooterLink>
           <div className='text-3xl'>|</div>

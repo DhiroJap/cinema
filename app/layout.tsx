@@ -3,11 +3,7 @@ import './globals.css';
 import { ReduxProvider } from '@/redux/provider';
 import Navbar from '@/components/shared/navbar';
 import Footer from '@/components/shared/footer';
-
-export const metadata: Metadata = {
-  title: 'GALAXY CINEMA - Now Playing',
-  description: 'Home Page',
-};
+import React from 'react';
 
 export default function RootLayout({
   children,
@@ -18,8 +14,10 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <Navbar />
-        <ReduxProvider>{children}</ReduxProvider>
-        <Footer />
+        <main>
+          <ReduxProvider>{children}</ReduxProvider>
+        </main>
+        {/* <Footer /> -> rusak, benerin aja baru pake */}
       </body>
     </html>
   );
