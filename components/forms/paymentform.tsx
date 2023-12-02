@@ -12,34 +12,6 @@ export default function PaymentForm() {
         <InputLabel htmlFor='time'>Time</InputLabel>
       </InputContainer>
 
-      <section className='flex justify-between gap-4'>
-        <NewButton>Pay</NewButton>
-        <NewButton>Pay</NewButton>
-        <NewButton>Pay</NewButton>
-      </section>
-
-      <InputContainer>
-        <InputLabel htmlFor='cardnumber'>Card Number</InputLabel>
-        <InputField type='number' id='cardNumber' />
-      </InputContainer>
-
-      <section className='flex justify-between gap-4'>
-        <InputContainer>
-          <InputLabel htmlFor='expiry'>Expiry</InputLabel>
-          <InputField type='month/year' id='expiry' />
-        </InputContainer>
-
-        <InputContainer>
-          <InputLabel htmlFor='cvc'>CVC</InputLabel>
-          <InputField type='number' inputMode='numeric' id='cvc' />
-        </InputContainer>
-      </section>
-
-      <InputContainer>
-        <InputLabel htmlFor='postalCode'>Postal Code</InputLabel>
-        <InputField type='number' inputMode='numeric' id='postalCode' />
-      </InputContainer>
-
       <h1>Total Payment: </h1>
 
       <section className='flex justify-between gap-2'>
@@ -47,12 +19,6 @@ export default function PaymentForm() {
         <NewButton>Cancel</NewButton>
       </section>
 
-      <div>
-        <span>Already have an account? </span>
-        <Link href='/login'>
-          <span className='underline text-customgray-2'>Login</span>
-        </Link>
-      </div>
     </form>
   );
 }
