@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Upcoming() {
   return (
-    <Page display='flex' alignItems='center' justifyContent='center'>
+    <Page display='flex' $alignItems='center' $justifyContent='center'>
       <h1>Upcoming Page</h1>
     </Page>
   );

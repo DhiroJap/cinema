@@ -8,7 +8,7 @@ interface UserState {
   phoneNumber: string;
   email: string;
   gender: string;
-  birthDate: Date;
+  birthdate: string;
 }
 
 const initialState: UserState = {
@@ -17,7 +17,7 @@ const initialState: UserState = {
   phoneNumber: '',
   email: '',
   gender: '',
-  birthDate: new Date(),
+  birthdate: '',
 };
 
 const userSlice = createSlice({
