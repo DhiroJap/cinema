@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import './globals.css';
 import { ReduxProvider } from '@/redux/provider';
 import Navbar from '@/components/shared/navbar';
@@ -17,7 +16,7 @@ export default function RootLayout({
         <main>
           <ReduxProvider>{children}</ReduxProvider>
         </main>
-        {/* <Footer /> -> rusak, benerin aja baru pake */}
+        <Footer />
       </body>
     </html>
   );

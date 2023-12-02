@@ -1,3 +1,16 @@
+import ProfileCard from '@/components/user/profilecard';
+import { Page } from '@/styles';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'GALAXY Cinema - Profile',
+  description: 'Profile Page',
+};
+
 export default function Profile() {
-  return <h1>Profile Page</h1>;
+  return (
+    <Page display='flex' $justifyContent='center' $alignItems='center'>
+      <ProfileCard />
+    </Page>
+  );
 }

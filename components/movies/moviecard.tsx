@@ -20,7 +20,6 @@ export default function MovieCard({ movie }: MovieProps) {
               alt=''
               width={200}
               height={400}
-              layout='responsive'
               className='object-cover'
             />
           </Link>
@@ -31,7 +30,7 @@ export default function MovieCard({ movie }: MovieProps) {
           } `}
           disabled
         >
-          {movie.original_language}
+          {movie.original_language.toUpperCase()}
         </MovieRating>
       </div>
     </section>

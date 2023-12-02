@@ -134,6 +134,8 @@ export const NowPlayingTag = styled.button`
 export const MovieRating = styled.button`
   color: #ffffff;
   padding: 0.2rem;
-  width: 5rem;
+  width: 4rem;
   font-weight: 600;
+  border-radius: 5px;
+  font-size: 1.3rem;
 `;

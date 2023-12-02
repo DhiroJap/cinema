@@ -21,7 +21,7 @@ export default async function MovieList() {
       </NowPlayingTag>
       <div className='grid grid-cols-4 gap-10'>
         {movies.map((movie: Movies) => {
-          return <MovieCard movie={movie} />;
+          return <MovieCard key={movie.id} movie={movie} />;
         })}
       </div>
     </section>
