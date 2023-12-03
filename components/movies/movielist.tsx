@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { MovieStatus } from '@/styles';
-import { useEffect } from 'react';
-import { getMovies } from '@/utils/request';
-import MovieCard from './moviecard';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/redux/store';
+import { MovieStatus } from "@/styles";
+import { useEffect } from "react";
+import { getMovies } from "@/utils/request";
+import MovieCard from "./moviecard";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
 import {
   setNowPlayingMovies,
   setUpcomingMovies,
-} from '@/redux/slices/moviesSlice';
+} from "@/redux/slices/moviesSlice";
 
 export interface Movies {
   id: number;
@@ -36,7 +36,7 @@ export default function MovieList() {
         dispatch(setNowPlayingMovies(nowPlaying));
         dispatch(setUpcomingMovies(upcoming));
       } catch (error) {
-        console.error('Error fetching movies:', error);
+        console.error("Error fetching movies:", error);
       }
     };
 
@@ -45,22 +45,22 @@ export default function MovieList() {
 
   return (
     <section>
-      <section className='flex flex-col gap-8 items-start'>
-        <MovieStatus className='bg-secondary text-customwhite-1' disabled>
+      <section className="flex flex-col gap-8 items-start">
+        <MovieStatus className="bg-secondary text-customwhite-1" disabled>
           Upcoming
         </MovieStatus>
-        <div className='grid grid-cols-4 gap-10'>
+        <div className="grid grid-cols-4 gap-10">
           {upcomingMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
       </section>
 
-      <section className='flex flex-col gap-8 items-start mt-28'>
-        <MovieStatus className='bg-secondary text-customwhite-1' disabled>
+      <section className="flex flex-col gap-8 items-start mt-28">
+        <MovieStatus className="bg-secondary text-customwhite-1" disabled>
           Now Playing
         </MovieStatus>
-        <div className='grid grid-cols-4 gap-10'>
+        <div className="grid grid-cols-4 gap-10">
           {nowPlayingMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
