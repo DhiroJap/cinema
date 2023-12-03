@@ -146,3 +146,16 @@ export const MoviePlaceholder = styled.div`
   overflow: hidden;
   background-color: #ccc;
 `;
+
+export const RatingBorder = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #22a39f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+`;

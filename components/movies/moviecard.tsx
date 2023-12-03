@@ -1,5 +1,5 @@
-import { MoviePlaceholder } from '@/styles';
-import Link from 'next/link';
+import { MoviePlaceholder } from "@/styles";
+import Link from "next/link";
 
 interface Movie {
   id: number;
@@ -17,10 +17,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   return (
     <MoviePlaceholder>
-      <Link href={`/movies/'${movie.id}`}>
+      <Link href={`/movies/${movie.id}`}>
         <img
           src={`${pathToPoster}` + `${movie.poster}`}
-          className='w-full h-full object-cover'
+          className="w-full h-full object-cover"
         />
       </Link>
     </MoviePlaceholder>
