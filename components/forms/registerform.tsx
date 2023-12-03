@@ -42,6 +42,7 @@ export default function RegisterForm() {
     }catch (error){
       console.error('Login Failed:', error);
     }
+  }
 
   return (
     <form className='w-200 flex flex-col gap-2' onSubmit= {registerAction}>
@@ -112,8 +113,7 @@ export default function RegisterForm() {
           <span className='underline text-customgray-2'>Login</span>
         </Link>
       </div>
-      console.log();
     </form>
   );
 }
-}
+
