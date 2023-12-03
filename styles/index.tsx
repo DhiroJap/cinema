@@ -31,6 +31,12 @@ export const NewButton = styled.button`
   &:active {
     background-color: #1b9894;
   }
+
+  &:disabled {
+    background-color: #4a49497a;
+    color: #878787a2;
+    cursor: not-allowed;
+  }
 `;
 
 export const AppLogo = styled.button`

@@ -2,7 +2,7 @@
 
 import { MovieStatus } from '@/styles';
 import { useEffect } from 'react';
-import { getMovies } from '@/utils/request';
+import { getMovies } from '@/utils/api/api';
 import MovieCard from './moviecard';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
