@@ -9,8 +9,6 @@ export const Page = styled.div<PageProps>`
   display: ${(props) => props.display};
   justify-content: ${(props) => props.$justifyContent};
   align-items: ${(props) => props.$alignItems};
-  margin-top: 5rem;
-  margin-bottom: 5rem;
 `;
 
 export const NewButton = styled.button`
@@ -123,12 +121,13 @@ export const AboutDiv = styled.div`
   }
 `;
 
-export const NowPlayingTag = styled.button`
+export const MovieStatus = styled.button`
   background-color: #22a39f;
   color: #ffffff;
-  padding: 0.4rem;
   width: 10rem;
   font-weight: 600;
+  padding: 0.2rem;
+  font-size: 1.3rem;
 `;
 
 export const MovieRating = styled.button`
@@ -138,4 +137,12 @@ export const MovieRating = styled.button`
   font-weight: 600;
   border-radius: 5px;
   font-size: 1.3rem;
+`;
+
+export const MoviePlaceholder = styled.div`
+  width: 300px;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  background-color: #ccc;
 `;

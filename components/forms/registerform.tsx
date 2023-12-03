@@ -1,3 +1,5 @@
+'use client';
+
 import { changeGender } from '@/redux/slices/extraSlice';
 import { AppDispatch, RootState } from '@/redux/store';
 import {
