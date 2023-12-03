@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { PageProps } from '@/utils/types';
-import styled from 'styled-components';
+import { PageProps } from "@/utils/types";
+import styled from "styled-components";
 
 export const Page = styled.div<PageProps>`
   min-height: 100vh;
@@ -15,7 +15,7 @@ export const NewButton = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 1.4rem;
   background-color: #22a39f;
   color: #fff;
@@ -62,7 +62,7 @@ export const InputField = styled.input`
   outline: none;
   border: none;
   color: #fff;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 18px;
   width: 100%;
   box-sizing: border-box;
@@ -117,13 +117,13 @@ export const AboutDiv = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  font-family: 'Inter';
+  font-family: "Inter";
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'Inter';
+    font-family: "Inter";
   }
 `;
 
@@ -151,4 +151,17 @@ export const MoviePlaceholder = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #ccc;
+`;
+
+export const RatingBorder = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #22a39f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
 `;

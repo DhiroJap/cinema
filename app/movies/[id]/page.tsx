@@ -1,16 +1,16 @@
-import MovieDetails from '@/components/movies/moviedetails';
-import { Page } from '@/styles';
-import { Metadata } from 'next';
+import MovieDetails from "@/components/movies/moviedetails";
+import { Page } from "@/styles";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'GALAXY CINEMA - Movie Details',
-  description: 'Movie Details Page',
+  title: "GALAXY CINEMA - Movie Details",
+  description: "Movie Details Page",
 };
 
-const MovieDetailsPage = () => {
+const MovieDetailsPage = ({ params }: { params: { id: string } }) => {
   return (
-    <Page display='flex' $justifyContent='center' $alignItems='center'>
-      <MovieDetails />
+    <Page display="flex" $justifyContent="center" $alignItems="center">
+      <MovieDetails id={params.id as string} />
     </Page>
   );
 };
