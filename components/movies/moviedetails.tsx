@@ -98,7 +98,7 @@ export default function MovieDetails({ id }: { id: string }) {
             </div>
             <NewButton
               className='mt-4'
-              onClick={() => router.push(`/movies/${id}/book/seat`)}
+              onClick={() => router.push(`/movies/${id}/book/time`)}
             >
               Buy Ticket
             </NewButton>

@@ -4,6 +4,7 @@ const getMoviesURL = process.env.NEXT_PUBLIC_GETMOVIES_URL;
 const postLoginURL = process.env.NEXT_PUBLIC_POSTLOGIN_URL;
 const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
+const getMovieTimeURL = process.env.NEXT_PUBLIC_GETBOOKING_URL;
 
 export const getMovies = async () => {
   try {
@@ -75,5 +76,20 @@ export const postRegister = async (
     return response.data;
   } catch (error) {
     throw new Error('Error registering you: ' + error);
+  }
+};
+
+export const getMovieTime = async (id: string) => {
+  try {
+    const scheduleId = parseInt(id);
+    const response = await axios.get(`${getMovieTimeURL}`, {
+      params: {
+        scheduleId: scheduleId,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error getting seat: ' + error);
   }
 };
