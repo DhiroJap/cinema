@@ -18,11 +18,9 @@ import {
 } from '@/styles';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { FormEvent, FormEventHandler } from 'react';
-import { setUserData } from '@/redux/slices/userSlice';
+import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { postRegister } from '@/utils/api/api';
+import { postRegister } from '@/utils/api';
 
 export default function RegisterForm() {
   const dispatch = useDispatch<AppDispatch>();

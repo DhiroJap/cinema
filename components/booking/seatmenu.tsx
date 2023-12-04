@@ -9,11 +9,14 @@ import {
   SeatIcon,
   TheaterScreen,
 } from '@/styles';
-import { getBookingSeat } from '@/utils/api/api';
+import { getBookingSeat } from '@/utils/api';
+import { lockRoute } from '@/utils/auth';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SeatMenu({ id }: { id: string }) {
+  lockRoute();
+
   const dispatch = useDispatch<AppDispatch>();
   const seatData = useSelector((state: RootState) => state.seat.seats);
 

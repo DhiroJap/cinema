@@ -5,7 +5,7 @@ import MovieCard from './moviecard';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { useEffect } from 'react';
-import { getMovies } from '@/utils/api/api';
+import { getMovies } from '@/utils/api';
 import { Movies } from './movielist';
 import {
   setNowPlayingMovies,
