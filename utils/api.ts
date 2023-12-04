@@ -81,10 +81,10 @@ export const postRegister = async (
 
 export const getMovieTime = async (id: string) => {
   try {
-    const scheduleId = parseInt(id);
+    const movieID = parseInt(id);
     const response = await axios.get(`${getMovieTimeURL}`, {
       params: {
-        scheduleId: scheduleId,
+        movieID: movieID,
       },
     });
     console.log(response.data);

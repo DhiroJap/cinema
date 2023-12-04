@@ -1,39 +1,49 @@
 "use client"
 
-import { getMovieTime } from "@/utils/api/api";
+import { getMovieDetail, getMovieTime } from '@/utils/api';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { NewButton, RatingBorder } from "@/styles";
 
-export interface Movie {
+interface Movie {
     id: number;
     title: string;
     poster: string;
     duration: number;
     isPlaying: boolean;
-    time: string;
+    timeStart: string;
   }
 
 export default function MovieTime({ id} : {id:string}){
     const pathToPoster = process.env.NEXT_PUBLIC_MOVIES_POSTER_URL;
     const [movieTime, setMovieTime] = useState<Movie | null>(null);
+    const [movieDetail, setMovieDetail] = useState<Movie | null>(null);
     const router = useRouter();
 
     useEffect(() => {
         const fetchMovieTime = async () => {
           try {
             const response = await getMovieTime(id);
-            if (response.data === null) {
+            const res = await getMovieDetail(id);
+            if (response.data === null && res.data === null) {
+
               alert(response.message);
+              alert(res.message);
               router.push("/");
             }
+            setMovieDetail(res.data);
             setMovieTime(response.data);
           } catch (error) {
             console.error("Error fetching movies:", error);
           }
         };
         fetchMovieTime();
+
+
+
       }, []);
+
+      
 
     return(
       <div className='flex-col w-[70%]'>
@@ -46,16 +56,16 @@ export default function MovieTime({ id} : {id:string}){
       </div>
       <div className='flex'>
         <img
-          src={`${pathToPoster}${movieTime?.poster}`}
+          src={`${pathToPoster}${movieDetail?.poster}`}
           className='h-[500px]'
         />
         <div className='flex-col px-5'>
           <div className='flex justify-between'>
             <div className='w-[80%]'>
-              <h2 className='text-3xl'>{movieTime?.title}</h2>
+              <h2 className='text-3xl'>{movieDetail?.title}</h2>
             </div>
             <div className='flex flex-col items-center justify-center w-[20%]'>
-              <h1>{`${movieTime?.time} minutes`}</h1>
+              <h1>{`${movieTime?.timeStart} minutes`}</h1>
             </div>
           </div>
           <div className='mt-5'>
@@ -64,7 +74,7 @@ export default function MovieTime({ id} : {id:string}){
               className='mt-4'
               onClick={() => router.push(`/movies/${id}/book/seat`)}
             >
-              Buy Ticket
+              Choose seat
             </NewButton>
           </div>
         </div>
