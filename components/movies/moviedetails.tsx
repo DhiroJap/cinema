@@ -80,7 +80,7 @@ export default function MovieDetails({ id }: { id: string }) {
               <h4 className="text-xl font-bold">Synopsis</h4>
               <p>{movieDetail?.synopsis}</p>
             </div>
-            <NewButton className="mt-4">Buy Ticket</NewButton>
+            <NewButton className="mt-4" onClick={() => router.push('/time')}>Buy Ticket</NewButton>
           </div>
         </div>
       </div>
