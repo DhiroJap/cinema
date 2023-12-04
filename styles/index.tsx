@@ -159,3 +159,104 @@ export const RatingBorder = styled.div`
   font-size: 16px;
   font-weight: bold;
 `;
+
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+`;
+
+export const Th = styled.th`
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+`;
+
+export const Td = styled.td`
+  padding: 12px;
+  text-align: left;
+`;
+
+export const DeleteButtons = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #d11111;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const EditButtons = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #dbd800;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const PrimaryButton = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #22a39f;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #28b1ad;
+  }
+  &:active {
+    background-color: #1b9894;
+  }
+`;
+
+export const InputForm = styled.input`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;
+
+export const TextareaForm = styled.textarea`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;
+
+export const SelectForm = styled.select`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;
