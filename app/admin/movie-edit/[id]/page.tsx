@@ -1,10 +1,10 @@
-"use client";
+import EditMovieForm from "@/components/admin/EditMovieForm";
 import { Page } from "@/styles";
 
-export default function Payment() {
+export default function MovieEdit({ params }: { params: { id: string } }) {
   return (
     <Page display="flex" $justifyContent="center" $alignItems="center">
-      <h1>EDIT AKU BANG</h1>
+      <EditMovieForm id={params.id as string} />
     </Page>
   );
 }

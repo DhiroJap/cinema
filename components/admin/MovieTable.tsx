@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getMovies } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import {
   Table,
@@ -10,6 +9,7 @@ import {
   PrimaryButton,
 } from "@/styles";
 import Link from "next/link";
+import { getMovies } from "@/utils/api/api";
 
 interface Movie {
   id: number;
@@ -68,7 +68,9 @@ const MovieTable = () => {
                 <Td>{movie.rating}</Td>
                 <Td>{movie.isPlaying === true ? "Now Playing" : "Upcoming"}</Td>
                 <Td>
-                  <EditButtons>Edit</EditButtons>
+                  <Link href="/admin/movie-edit/1">
+                    <EditButtons>Edit</EditButtons>
+                  </Link>
                   <DeleteButtons>Delete</DeleteButtons>
                 </Td>
               </tr>

@@ -13,7 +13,6 @@ interface MovieCardProps {
 
 export default function MovieCard({ movie }: MovieCardProps) {
   const pathToPoster = process.env.NEXT_PUBLIC_MOVIES_POSTER_URL;
-  console.log(`${pathToPoster}` + `${movie.poster}`);
 
   return (
     <MoviePlaceholder>

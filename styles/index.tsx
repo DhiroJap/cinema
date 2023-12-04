@@ -31,6 +31,12 @@ export const NewButton = styled.button`
   &:active {
     background-color: #1b9894;
   }
+
+  &:disabled {
+    background-color: #4a49497a;
+    color: #878787a2;
+    cursor: not-allowed;
+  }
 `;
 
 export const AppLogo = styled.button`
@@ -151,7 +157,6 @@ export const RatingBorder = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #22a39f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,6 +217,38 @@ export const PrimaryButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s;
   background-color: #22a39f;
+`;
+export const SeatIcon = styled.button`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+`;
+
+export const TheaterScreen = styled.div`
+  background-color: #fff;
+  height: 10rem;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+`;
+
+export const SeatConfirm = styled.button`
+  width: 100%;
+  outline: none;
+  border: none;
+  font-family: "Inter";
+  font-size: 1.4rem;
+  background-color: #22a39f;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 25px 0;
+  transition: 250ms background-color ease;
 
   &:hover {
     cursor: pointer;
@@ -219,6 +256,28 @@ export const PrimaryButton = styled.button`
   }
   &:active {
     background-color: #1b9894;
+  }
+`;
+
+export const SeatCancel = styled.button`
+  width: 100%;
+  outline: none;
+  border: none;
+  font-family: "Inter";
+  font-size: 1.4rem;
+  background-color: #ff0909;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 25px 0;
+  transition: 250ms background-color ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #d72525;
+  }
+  &:active {
+    background-color: #e43434;
   }
 `;
 
