@@ -17,12 +17,13 @@ export const getMovies = async () => {
 export const postLogin = async (phoneNumber: string, password: string) => {
   try {
     const response = await axios.post(`${postLoginURL}`, {
-      phoneNumber: phoneNumber,
-      password: password,
+      phoneNumber,
+      password,
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error("Error logging you in: " + error);
+    console.error("Failed");
   }
 };
 

@@ -1,22 +1,38 @@
 'use client';
 
-import { setUserData } from '@/redux/slices/userSlice';
-import { AppDispatch, RootState } from '@/redux/store';
+import { removeUser } from '@/redux/slices/userSlice';
+import { AppDispatch, RootState, persistor } from '@/redux/store';
+import { NewButton } from '@/styles';
+import { lockRoute } from '@/utils/auth';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function ProfileCard() {
-  const { name, phoneNumber, email, gender, birthdate } = useSelector(
-    (state: RootState) => state.user
-  );
+  lockRoute();
+
+  const router = useRouter();
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch<AppDispatch>();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    dispatch(removeUser());
+    persistor.purge();
+    router.push('/login');
+  };
 
   return (
     <section>
-      <h1>Welcome, {name}</h1>
-      <h1>Your phone number is : {phoneNumber}</h1>
-      <h1>Your email is : {email}</h1>
-      <h1>Your gender is : {gender}</h1>
-      <h1>Your birth date is : {birthdate}</h1>
+      <NewButton onClick={handleLogout}>Logout</NewButton>
+      <h1>User Profile</h1>
+      {user && (
+        <div>
+          <p>Name: {user.name}</p>
+          <p>Phone Number: {user.phoneNumber}</p>
+          <p>Email: {user.email}</p>
+          <p>Gender: {user.gender}</p>
+          <p>Birthdate: {user.birthdate}</p>
+        </div>
+      )}
     </section>
   );
 }

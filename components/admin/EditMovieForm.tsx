@@ -1,9 +1,9 @@
 "use client";
 import { PrimaryButton, InputForm, TextareaForm, SelectForm } from "@/styles";
-import { getMovieDetail } from "@/utils/api/api";
 import { formValidation } from "@/utils/formValidator/formValidator";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getMovieDetail } from "@/utils/api";
 
 interface FormData {
   title: string;

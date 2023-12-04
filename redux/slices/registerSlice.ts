@@ -1,5 +1,3 @@
-'use client';
-
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 // const emailRegexPattern = /^\S+@\S+\.\S+$/;

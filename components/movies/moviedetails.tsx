@@ -1,6 +1,6 @@
 "use client";
 
-import { getMovieDetail } from "@/utils/api/api";
+import { getMovieDetail } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { NewButton, RatingBorder } from "@/styles";

@@ -1,20 +1,35 @@
 'use client';
 
 import { configureStore } from '@reduxjs/toolkit';
-import loginSlice from './slices/loginSlice';
-import userSlice from './slices/userSlice';
-import moviesSlice from './slices/moviesSlice';
-import registerSlice from './slices/registerSlice';
-import seatSlice from './slices/seatSlice';
+import loginReducer from './slices/loginSlice';
+import userReducer from './slices/userSlice';
+import moviesReducer from './slices/moviesSlice';
+import registerReducer from './slices/registerSlice';
+import seatReducer from './slices/seatSlice';
+import authReducer from './slices/authSlice';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user'],
+};
+
+const persistedReducer = persistReducer(persistConfig, userReducer);
+
 export const store = configureStore({
   reducer: {
-    login: loginSlice,
-    user: userSlice,
-    movies: moviesSlice,
-    register: registerSlice,
-    seat: seatSlice,
+    login: loginReducer,
+    user: persistedReducer,
+    movies: moviesReducer,
+    register: registerReducer,
+    seat: seatReducer,
+    auth: authReducer,
   },
 });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
