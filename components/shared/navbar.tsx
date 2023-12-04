@@ -1,11 +1,15 @@
 'use client';
 
+import { RootState } from '@/redux/store';
 import { AppLogo, NavbarLink } from '@/styles';
+import { isAuthenticated } from '@/utils/auth';
 import { flexBetween } from '@/utils/const';
 
 import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
+  const isLoggedIn = isAuthenticated();
   const router = useRouter();
 
   return (
@@ -36,10 +40,20 @@ export default function Navbar() {
             </div>
           </div>
           <div className={`${flexBetween} gap-10`}>
-            <NavbarLink onClick={() => router.push('/login')}>Login</NavbarLink>
-            <NavbarLink onClick={() => router.push('/register')}>
-              Register
-            </NavbarLink>
+            {!isLoggedIn ? (
+              <>
+                <NavbarLink onClick={() => router.push('/login')}>
+                  Login
+                </NavbarLink>
+                <NavbarLink onClick={() => router.push('/register')}>
+                  Register
+                </NavbarLink>
+              </>
+            ) : (
+              <NavbarLink onClick={() => router.push('/profile')}>
+                Profile
+              </NavbarLink>
+            )}
           </div>
         </div>
       </div>

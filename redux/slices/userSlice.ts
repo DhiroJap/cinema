@@ -1,66 +1,37 @@
-'use client';
-
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-
-interface User {
-  id: string;
-  name: string;
-  phoneNumber: string;
-  email: string;
-  gender: string;
-  birthdate: string;
-}
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface UserState {
-  user: User | null;
+  user: {
+    id: string;
+    name: string;
+    phoneNumber: string;
+    email: string;
+    gender: string;
+    birthdate: string;
+  } | null;
   token: string | null;
-  isAuthenticated: boolean;
-  tokenExpiration: Date | null;
 }
 
 const initialState: UserState = {
   user: null,
   token: null,
-  isAuthenticated: false,
-  tokenExpiration: null,
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData(state, action: PayloadAction<UserState>) {
+    setUser: (
+      state,
+      action: PayloadAction<{ user: UserState['user']; token: string }>
+    ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isAuthenticated = true;
-      state.tokenExpiration = action.payload.tokenExpiration;
     },
-    clearUserData(state) {
-      state.user = null;
-      state.token = null;
-      state.isAuthenticated = false;
-      state.tokenExpiration = null;
+    removeUser: (state) => {
+      state = initialState;
     },
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 export default userSlice.reducer;
-
-const selectUserState = (state: RootState) => state.user;
-
-export const selectUser = createSelector(
-  selectUserState,
-  (userState) => userState.user
-);
-
-export const selectToken = createSelector(
-  selectUserState,
-  (userState) => userState.token
-);
-
-export const selectIsAuthenticated = createSelector(
-  selectUserState,
-  (userState) => userState.isAuthenticated
-);

@@ -6,10 +6,10 @@ import { InputContainer, InputField, InputLabel, NewButton } from '@/styles';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormEvent } from 'react';
-import { setUserData } from '@/redux/slices/userSlice';
 import { useRouter } from 'next/navigation';
-import { postLogin } from '@/utils/api/api';
+import { postLogin } from '@/utils/api';
 import { ToastContainer, toast } from 'react-toastify';
+import { setUser } from '@/redux/slices/userSlice';
 
 export default function LoginForm() {
   const dispatch = useDispatch<AppDispatch>();
@@ -68,11 +68,24 @@ export default function LoginForm() {
 
     try {
       const response = await postLogin(phoneNumber, password);
-
-      const { user, token } = response;
-
-      localStorage.setItem('token', token);
-      dispatch(setUserData(user));
+      if (response) {
+        const { user, token } = response.data;
+        const { id, name, phoneNumber, email, gender, birthdate } = user;
+        dispatch(
+          setUser({
+            user: {
+              id,
+              name,
+              phoneNumber,
+              email,
+              gender,
+              birthdate,
+            },
+            token,
+          })
+        );
+        localStorage.setItem('token', token);
+      }
       router.push('/profile');
     } catch (error) {
       console.error('Login Failed:', error);
