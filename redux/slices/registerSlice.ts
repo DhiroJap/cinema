@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-// const emailRegexPattern = /^\S+@\S+\.\S+$/;
-// const passwordRegexPattern = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
-
 interface RegisterState {
   name: string;
   phoneNumber: string;
@@ -10,6 +7,8 @@ interface RegisterState {
   password: string;
   gender: string;
   birthDate: string;
+  isEmailValid: boolean;
+  isPasswordValid: boolean;
 }
 
 const initialState: RegisterState = {
@@ -19,6 +18,8 @@ const initialState: RegisterState = {
   password: '',
   gender: 'Male',
   birthDate: '',
+  isEmailValid: false,
+  isPasswordValid: false,
 };
 
 const RegisterSlice = createSlice({
@@ -32,10 +33,14 @@ const RegisterSlice = createSlice({
       state.phoneNumber = action.payload;
     },
     inputEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
+      const email = action.payload;
+      state.email = email;
+      state.isEmailValid = isEmailValid(email);
     },
     inputPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload;
+      const password = action.payload;
+      state.password = password;
+      state.isPasswordValid = isPasswordValid(password);
     },
     changeGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
@@ -45,6 +50,17 @@ const RegisterSlice = createSlice({
     },
   },
 });
+
+
+const isEmailValid = (email: string): boolean => {
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  return emailRegex.test(email);
+};
+
+const isPasswordValid = (password: string): boolean => {
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+  return passwordRegex.test(password);
+};
 
 export const {
   inputName,

@@ -22,7 +22,6 @@ export default function ProfileCard() {
 
   return (
     <section>
-      <NewButton onClick={handleLogout}>Logout</NewButton>
       <h1>User Profile</h1>
       {user && (
         <div>
@@ -33,6 +32,7 @@ export default function ProfileCard() {
           <p>Birthdate: {user.birthdate}</p>
         </div>
       )}
+      <NewButton onClick={handleLogout}>Logout</NewButton>
     </section>
   );
 }
