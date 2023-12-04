@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const getMoviesURL = process.env.NEXT_PUBLIC_GETMOVIES_URL;
 const postLoginURL = process.env.NEXT_PUBLIC_POSTLOGIN_URL;
@@ -11,7 +11,7 @@ export const getMovies = async () => {
     const response = await axios.get(`${getMoviesURL}`);
     return response.data;
   } catch (error) {
-    throw new Error('Error fetching movies: ' + error);
+    throw new Error("Error fetching movies: " + error);
   }
 };
 
@@ -23,7 +23,8 @@ export const postLogin = async (phoneNumber: string, password: string) => {
     });
     return response;
   } catch (error) {
-    console.error('Failed');
+    throw new Error("Error logging you in: " + error);
+    console.error("Failed");
   }
 };
 
@@ -52,7 +53,7 @@ export const getBookingSeat = async (id: string) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw new Error('Error getting seat: ' + error);
+    throw new Error("Error getting seat: " + error);
   }
 };
 
@@ -65,7 +66,7 @@ export const postRegister = async (
   birthDate: string
 ) => {
   try {
-    const response = await axios.post('https://localhost:7292/Auth/register', {
+    const response = await axios.post("https://localhost:7292/Auth/register", {
       name: name,
       email: email,
       phoneNumber: phoneNumber,
@@ -75,7 +76,7 @@ export const postRegister = async (
     });
     return response.data;
   } catch (error) {
-    throw new Error('Error registering you: ' + error);
+    throw new Error("Error registering you: " + error);
   }
 };
 
