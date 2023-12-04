@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { PageProps } from '@/utils/types';
-import styled from 'styled-components';
+import { PageProps } from "@/utils/types";
+import styled from "styled-components";
 
 export const Page = styled.div<PageProps>`
   min-height: 100vh;
@@ -15,7 +15,7 @@ export const NewButton = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 1.4rem;
   background-color: #22a39f;
   color: #fff;
@@ -62,7 +62,7 @@ export const InputField = styled.input`
   outline: none;
   border: none;
   color: #fff;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 18px;
   width: 100%;
   box-sizing: border-box;
@@ -117,13 +117,13 @@ export const AboutDiv = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  font-family: 'Inter';
+  font-family: "Inter";
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'Inter';
+    font-family: "Inter";
   }
 `;
 
@@ -165,6 +165,59 @@ export const RatingBorder = styled.div`
   font-weight: bold;
 `;
 
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+`;
+
+export const Th = styled.th`
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+`;
+
+export const Td = styled.td`
+  padding: 12px;
+  text-align: left;
+`;
+
+export const DeleteButtons = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #d11111;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const EditButtons = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #dbd800;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const PrimaryButton = styled.button`
+  margin-right: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #22a39f;
+`;
 export const SeatIcon = styled.button`
   width: 50px;
   height: 50px;
@@ -188,7 +241,7 @@ export const SeatConfirm = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 1.4rem;
   background-color: #22a39f;
   color: #fff;
@@ -210,7 +263,7 @@ export const SeatCancel = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 1.4rem;
   background-color: #ff0909;
   color: #fff;
@@ -226,4 +279,43 @@ export const SeatCancel = styled.button`
   &:active {
     background-color: #e43434;
   }
+`;
+
+export const InputForm = styled.input`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;
+
+export const TextareaForm = styled.textarea`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;
+
+export const SelectForm = styled.select`
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "Inter";
+  background-color: black;
+  box-sizing: border-box;
+  border-radius: 10px;
 `;
