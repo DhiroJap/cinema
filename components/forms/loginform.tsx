@@ -42,11 +42,13 @@ export default function LoginForm() {
       }
 
       if (isNumberMissing) {
-        errorMessages.push("Password must contain at least one number.");
+        errorMessages.push("Password must contain at least one number."
+        );
       }
 
       if (isSymbolMissing) {
-        errorMessages.push("Password must contain at least one symbol.");
+        errorMessages.push("Password must contain at least one symbol."
+        );
       }
 
       if (errorMessages.length > 0) {
@@ -111,7 +113,8 @@ export default function LoginForm() {
         <InputField
           id="password"
           type="password"
-          onChange={(e) => dispatch(inputPassword(e.target.value))}
+          onChange={(e) => 
+            dispatch(inputPassword(e.target.value))}
         />
       </InputContainer>
       <NewButton type="submit" disabled={!isFormEmpty}>

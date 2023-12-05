@@ -4,6 +4,7 @@ const getMoviesURL = process.env.NEXT_PUBLIC_GETMOVIES_URL;
 const postLoginURL = process.env.NEXT_PUBLIC_POSTLOGIN_URL;
 const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
+const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getMovieTimeURL = process.env.NEXT_PUBLIC_GETBOOKING_URL;
 
 export const getMovies = async () => {
@@ -66,7 +67,7 @@ export const postRegister = async (
   birthDate: string
 ) => {
   try {
-    const response = await axios.post("https://localhost:7292/Auth/register", {
+    const response = await axios.post(`${getRegisterURL}`, {
       name: name,
       email: email,
       phoneNumber: phoneNumber,
