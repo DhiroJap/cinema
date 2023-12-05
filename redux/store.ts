@@ -7,6 +7,7 @@ import moviesReducer from './slices/moviesSlice';
 import registerReducer from './slices/registerSlice';
 import seatReducer from './slices/seatSlice';
 import authReducer from './slices/authSlice';
+import scheduleReducer from './slices/scheduleSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -26,6 +27,7 @@ export const store = configureStore({
     register: registerReducer,
     seat: seatReducer,
     auth: authReducer,
+    schedule: scheduleReducer,
   },
 });
 

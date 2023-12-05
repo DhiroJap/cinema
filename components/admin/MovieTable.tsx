@@ -9,7 +9,7 @@ import {
   PrimaryButton,
 } from "@/styles";
 import Link from "next/link";
-import { getMovies } from "@/utils/api/api";
+import { getMovies } from "@/utils/api";
 
 interface Movie {
   id: number;

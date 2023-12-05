@@ -10,3 +10,8 @@ export type MovieType = {
   director: string;
   rating: string;
 };
+export interface MovieTime {
+  id: number;
+  title: string;
+  timeStart: string;
+}
