@@ -1,5 +1,6 @@
 import ProfileCard from '@/components/user/profilecard';
 import { Page } from '@/styles';
+import { lockRoute } from '@/utils/auth';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

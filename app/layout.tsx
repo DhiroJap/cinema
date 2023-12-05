@@ -4,6 +4,7 @@ import Navbar from '@/components/shared/navbar';
 import Footer from '@/components/shared/footer';
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 export default function RootLayout({
   children,
@@ -16,6 +17,7 @@ export default function RootLayout({
         <body>
           <Navbar />
           <main>{children}</main>
+          <ToastContainer />
           <Footer />
         </body>
       </html>

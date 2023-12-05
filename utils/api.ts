@@ -1,21 +1,33 @@
-import axios from "axios";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
-const getMoviesURL = process.env.NEXT_PUBLIC_GETMOVIES_URL;
+const getNowPlayingMoviesURL: string =
+  process.env.NEXT_PUBLIC_GETNOWPLAYINGMOVIES_URL!;
+const getUpcomingMoviesURL: string =
+  process.env.NEXT_PUBLIC_GETUPCOMINGMOVIES_URL!;
 const postLoginURL = process.env.NEXT_PUBLIC_POSTLOGIN_URL;
 const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getMovieTimeURL = process.env.NEXT_PUBLIC_GETBOOKING_URL;
 
-export const getMovies = async () => {
-  try {
-    const response = await axios.get(`${getMoviesURL}`);
-    return response.data;
-  } catch (error) {
-    throw new Error("Error fetching movies: " + error);
-  }
-};
+export async function GetNowPlaying() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_GETNOWPLAYINGMOVIES_URL}`
+  );
+  return response;
+}
 
+export async function GetUpcoming() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_GETUPCOMINGMOVIES_URL}`
+  );
+  return response;
+}
+
+let lastErrorTime = 0;
+const COOLDOWN_TIME = 5000;
 export const postLogin = async (phoneNumber: string, password: string) => {
   try {
     const response = await axios.post(`${postLoginURL}`, {
@@ -23,9 +35,25 @@ export const postLogin = async (phoneNumber: string, password: string) => {
       password,
     });
     return response;
-  } catch (error) {
-    throw new Error("Error logging you in: " + error);
-    console.error("Failed");
+  } catch (error: any) {
+    if (error.response?.status !== 200) {
+      const currentTime = Date.now();
+
+      if (currentTime - lastErrorTime > COOLDOWN_TIME) {
+        toast.error(error.response?.data.message, {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
+        lastErrorTime = currentTime;
+      }
+      return undefined;
+    }
   }
 };
 
@@ -54,7 +82,7 @@ export const getBookingSeat = async (id: string) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw new Error("Error getting seat: " + error);
+    throw new Error('Error getting seat: ' + error);
   }
 };
 
@@ -77,7 +105,7 @@ export const postRegister = async (
     });
     return response.data;
   } catch (error) {
-    throw new Error("Error registering you: " + error);
+    throw new Error('Error registering you: ' + error);
   }
 };
 

@@ -3,7 +3,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import loginReducer from './slices/loginSlice';
 import userReducer from './slices/userSlice';
-import moviesReducer from './slices/moviesSlice';
 import registerReducer from './slices/registerSlice';
 import seatReducer from './slices/seatSlice';
 import authReducer from './slices/authSlice';
@@ -23,7 +22,6 @@ export const store = configureStore({
   reducer: {
     login: loginReducer,
     user: persistedReducer,
-    movies: moviesReducer,
     register: registerReducer,
     seat: seatReducer,
     auth: authReducer,

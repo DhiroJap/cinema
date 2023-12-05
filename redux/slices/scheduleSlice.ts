@@ -1,7 +1,7 @@
 // scheduleSlice.ts
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {MovieTime} from '@/components/movies/movieTime';
+import { MovieTime } from '@/components/booking/timemenu';
 interface ScheduleState {
   scheduleData: MovieTime[] | null;
 }

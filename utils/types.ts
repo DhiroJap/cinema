@@ -4,12 +4,45 @@ export type PageProps = Partial<{
   $alignItems: string;
 }>;
 
-export type MovieType = {
+export type Movies = {
   id: number;
   title: string;
   director: string;
   rating: string;
+  poster: string;
+  synopsis: string;
+  duration: number;
+  releaseDate: string;
+  casts: string;
+  writer: string;
 };
+
+export type NowPlayingType = {
+  id: number;
+  title: string;
+  director: string;
+  rating: string;
+  poster: string;
+  synopsis: string;
+  duration: number;
+  releaseDate: string;
+  casts: string;
+  writer: string;
+};
+
+export type UpcomingType = {
+  id: number;
+  title: string;
+  director: string;
+  rating: string;
+  poster: string;
+  synopsis: string;
+  duration: number;
+  releaseDate: string;
+  casts: string;
+  writer: string;
+};
+
 export interface MovieTime {
   id: number;
   title: string;

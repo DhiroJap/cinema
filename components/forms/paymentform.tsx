@@ -1,11 +1,8 @@
 'use client';
 
 import { InputContainer, InputLabel, NewButton } from '@/styles';
-import { lockRoute } from '@/utils/auth';
 
 export default function PaymentForm() {
-  lockRoute();
-
   return (
     <form className='w-200 flex flex-col gap-2'>
       <InputContainer>

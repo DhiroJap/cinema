@@ -10,14 +10,16 @@ export default function Footer() {
     <footer className='mb-24'>
       <div className='bg-navbar px-6 flex flex-col justify-between items-center border-t-2 border-t-customgray-1 p-6 gap-6'>
         <div className='flex gap-6'>
-          <FooterLink onClick={() => router.push('/')}>Now Playing</FooterLink>
+          <FooterLink onClick={() => router.push('/nowplaying')}>
+            Now Playing
+          </FooterLink>
           <div className='text-3xl'>|</div>
           <FooterLink onClick={() => router.push('/upcoming')}>
             Upcoming
           </FooterLink>
           <div className='text-3xl'>|</div>
-          <FooterLink onClick={() => router.push('/profile')}>
-            Profile
+          <FooterLink onClick={() => router.push('/about')}>
+            About Us
           </FooterLink>
         </div>
         <div className='text-sm'>

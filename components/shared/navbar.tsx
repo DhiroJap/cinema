@@ -28,7 +28,7 @@ export default function Navbar() {
           </div>
           <div className={`${flexBetween} w-full`}>
             <div className={`${flexBetween} gap-10`}>
-              <NavbarLink onClick={() => router.push('/')}>
+              <NavbarLink onClick={() => router.push('/nowplaying')}>
                 Now Playing
               </NavbarLink>
               <NavbarLink onClick={() => router.push('/upcoming')}>

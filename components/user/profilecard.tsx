@@ -6,10 +6,10 @@ import { NewButton } from '@/styles';
 import { lockRoute } from '@/utils/auth';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 export default function ProfileCard() {
   lockRoute();
-
   const router = useRouter();
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch<AppDispatch>();
@@ -18,6 +18,17 @@ export default function ProfileCard() {
     dispatch(removeUser());
     persistor.purge();
     router.push('/login');
+    router.refresh();
+    toast.success('Successfully logged out!', {
+      position: 'bottom-left',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
   };
 
   return (
