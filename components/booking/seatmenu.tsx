@@ -2,24 +2,25 @@
 
 import { getSeatData } from '@/redux/slices/seatSlice';
 import { AppDispatch, RootState } from '@/redux/store';
-import { SeatCancel, SeatConfirm, SeatIcon, TheaterScreen } from '@/styles';
+import { CancelButton, ConfirmButton, SeatIcon, TheaterScreen } from '@/styles';
 import { getBookingSeat } from '@/utils/api';
 import { lockRoute } from '@/utils/auth';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function SeatMenu({ id }: { id: string }) {
+export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
   lockRoute();
   const dispatch = useDispatch<AppDispatch>();
   const seatData = useSelector((state: RootState) => state.seat.seats);
 
   useEffect(() => {
     const getSeat = async () => {
-      const response = await getBookingSeat(id);
-      dispatch(getSeatData(response.data));
+      console.log(scheduleId);
+      const response = await getBookingSeat(scheduleId);
+      console.log(response);
     };
     getSeat();
-  }, [dispatch, id]);
+  }, [dispatch, scheduleId]);
 
   return (
     <section className='my-20'>
@@ -55,8 +56,8 @@ export default function SeatMenu({ id }: { id: string }) {
         ))}
       </div>
       <section className='flex gap-4'>
-        <SeatConfirm>Confirm Order</SeatConfirm>
-        <SeatCancel>Cancel</SeatCancel>
+        <ConfirmButton>Confirm Order</ConfirmButton>
+        <CancelButton>Cancel</CancelButton>
       </section>
     </section>
   );

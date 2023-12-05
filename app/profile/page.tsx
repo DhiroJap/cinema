@@ -1,3 +1,4 @@
+import Modal from '@/components/shared/modal';
 import ProfileCard from '@/components/user/profilecard';
 import { Page } from '@/styles';
 import { lockRoute } from '@/utils/auth';

@@ -8,21 +8,17 @@ const getUpcomingMoviesURL: string =
   process.env.NEXT_PUBLIC_GETUPCOMINGMOVIES_URL!;
 const postLoginURL = process.env.NEXT_PUBLIC_POSTLOGIN_URL;
 const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
-const getBookingSeatURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
+const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
-const getMovieTimeURL = process.env.NEXT_PUBLIC_GETBOOKING_URL;
+const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
 
 export async function GetNowPlaying() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_GETNOWPLAYINGMOVIES_URL}`
-  );
+  const response = await fetch(getNowPlayingMoviesURL);
   return response;
 }
 
 export async function GetUpcoming() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_GETUPCOMINGMOVIES_URL}`
-  );
+  const response = await fetch(getUpcomingMoviesURL);
   return response;
 }
 
@@ -71,10 +67,9 @@ export const getMovieDetail = async (id: string) => {
   }
 };
 
-export const getBookingSeat = async (id: string) => {
+export const getBookingSeat = async (scheduleId: number) => {
   try {
-    const scheduleId = parseInt(id);
-    const response = await axios.get(`${getBookingSeatURL}`, {
+    const response = await axios.get(getBookingSeatURL, {
       params: {
         scheduleId: scheduleId,
       },
@@ -109,17 +104,11 @@ export const postRegister = async (
   }
 };
 
-export const getMovieTime = async (id: string) => {
+export async function GetBookingTime(id: string) {
   try {
-    const movieID = parseInt(id);
-    const response = await axios.get(`${getMovieTimeURL}`, {
-      params: {
-        movieID: movieID,
-      },
-    });
-    console.log(response.data);
-    return response.data;
+    const response = await fetch(`${getBookingTimeURL}${id}`);
+    return response;
   } catch (error) {
-    throw new Error('Error getting seat: ' + error);
+    console.error('Error fetching schedules:', error);
   }
-};
+}

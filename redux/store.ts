@@ -6,7 +6,7 @@ import userReducer from './slices/userSlice';
 import registerReducer from './slices/registerSlice';
 import seatReducer from './slices/seatSlice';
 import authReducer from './slices/authSlice';
-import scheduleReducer from './slices/scheduleSlice';
+import timeReducer from './slices/timeSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -25,7 +25,7 @@ export const store = configureStore({
     register: registerReducer,
     seat: seatReducer,
     auth: authReducer,
-    schedule: scheduleReducer,
+    time: timeReducer,
   },
 });
 

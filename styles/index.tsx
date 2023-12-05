@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { PageProps } from "@/utils/types";
-import styled from "styled-components";
+import { PageProps } from '@/utils/types';
+import styled from 'styled-components';
 
 export const Page = styled.div<PageProps>`
   min-height: 100vh;
@@ -15,7 +15,7 @@ export const NewButton = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-size: 1.4rem;
   background-color: #22a39f;
   color: #fff;
@@ -62,7 +62,7 @@ export const InputField = styled.input`
   outline: none;
   border: none;
   color: #fff;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-size: 18px;
   width: 100%;
   box-sizing: border-box;
@@ -74,6 +74,12 @@ export const InputField = styled.input`
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  &::placeholder {
+    color: #aaa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
   }
 `;
 
@@ -117,13 +123,13 @@ export const AboutDiv = styled.div`
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  font-family: "Inter";
+  font-family: 'Inter';
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: "Inter";
+    font-family: 'Inter';
   }
 `;
 
@@ -237,11 +243,11 @@ export const TheaterScreen = styled.div`
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 `;
 
-export const SeatConfirm = styled.button`
+export const ConfirmButton = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-size: 1.4rem;
   background-color: #22a39f;
   color: #fff;
@@ -259,11 +265,11 @@ export const SeatConfirm = styled.button`
   }
 `;
 
-export const SeatCancel = styled.button`
+export const CancelButton = styled.button`
   width: 100%;
   outline: none;
   border: none;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-size: 1.4rem;
   background-color: #ff0909;
   color: #fff;
@@ -288,7 +294,7 @@ export const InputForm = styled.input`
   padding: 8px;
   margin-bottom: 15px;
   color: #fff;
-  font-family: "Inter";
+  font-family: 'Inter';
   background-color: black;
   box-sizing: border-box;
   border-radius: 10px;
@@ -301,7 +307,7 @@ export const TextareaForm = styled.textarea`
   padding: 8px;
   margin-bottom: 15px;
   color: #fff;
-  font-family: "Inter";
+  font-family: 'Inter';
   background-color: black;
   box-sizing: border-box;
   border-radius: 10px;
@@ -314,8 +320,34 @@ export const SelectForm = styled.select`
   padding: 8px;
   margin-bottom: 15px;
   color: #fff;
-  font-family: "Inter";
+  font-family: 'Inter';
   background-color: black;
   box-sizing: border-box;
   border-radius: 10px;
+`;
+
+export const TimeButton = styled.button`
+  border-radius: 10px;
+  padding: 1rem;
+  border: 3px solid #fff;
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+export const ModalContainer = styled.div`
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 40rem;
 `;
