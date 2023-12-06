@@ -15,6 +15,7 @@ const Upcoming = () => {
       try {
         const response = await GetUpcoming();
         const data = await response.json();
+        console.log(data);
         setUpcoming(data.data);
       } catch (error) {
         console.error('Error fetching now playing movies:', error);
@@ -34,7 +35,7 @@ const Upcoming = () => {
           <MoviePlaceholder key={movie.id}>
             <Link href={`/movies/${movie.id}`}>
               <img
-                src={`${pathToPoster}${movie.poster}`}
+                src={`${movie.poster}`}
                 alt={`${movie.title} poster`}
                 className='w-full h-full object-cover'
               />

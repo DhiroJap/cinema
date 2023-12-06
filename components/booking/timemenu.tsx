@@ -81,7 +81,7 @@ export default function TimeMenu({ id }: { id: string }) {
   return (
     <div className='flex-col w-[70%]'>
       <div className='flex'>
-        <img src={`${pathToPoster}${detail?.poster}`} className='h-[500px]' />
+        <img src={`${detail?.poster}`} className='h-[500px]' />
         <div className='flex-col px-5'>
           <div className='w-[80%]'>
             <h2 className='text-3xl mb-10'>{detail?.title}</h2>

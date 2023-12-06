@@ -57,6 +57,9 @@ export const postLogin = async (phoneNumber: string, password: string) => {
 export const getMovieDetail = async (id: string) => {
   try {
     const movieId = parseInt(id);
+
+    console.log(getMovieDetailURL);
+
     const response = await axios.get(getMovieDetailURL, {
       params: {
         movieID: movieId,
@@ -64,6 +67,7 @@ export const getMovieDetail = async (id: string) => {
     });
     return response.data;
   } catch (error: any) {
+
     return error.response?.data;
   }
 };

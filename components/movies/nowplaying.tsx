@@ -34,7 +34,7 @@ const NowPlaying = () => {
           <MoviePlaceholder key={movie.id}>
             <Link href={`/movies/${movie.id}`}>
               <img
-                src={`${pathToPoster}${movie.poster}`}
+                src={`${movie.poster}`}
                 alt={`${movie.title} poster`}
                 className='w-full h-full object-cover'
               />
