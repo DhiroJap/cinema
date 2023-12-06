@@ -23,11 +23,17 @@ export default function MovieDetails({ id }: { id: string }) {
     const fetchMovieDetail = async () => {
       try {
         const response = await getMovieDetail(id);
+
+        console.log(response.data);
+
         if (response.data === null) {
           alert(response.message);
           router.push("/");
         }
-        setMovieDetail(response.data);
+        else {
+          setMovieDetail(response.data);
+        }
+      
       } catch (error) {
         console.error("Error fetching movies:", error);
       }

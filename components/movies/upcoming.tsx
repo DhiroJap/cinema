@@ -14,6 +14,7 @@ const Upcoming = () => {
       try {
         const response = await GetUpcoming();
         const data = await response.json();
+        console.log(data);
         setUpcoming(data.data);
       } catch (error) {
         console.error("Error fetching now playing movies:", error);

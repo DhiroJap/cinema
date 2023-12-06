@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "@/redux/store";
 import { CancelButton, ConfirmButton, SeatIcon, TheaterScreen } from "@/styles";
 import { getBookingSeat } from "@/utils/api";
 import { lockRoute } from "@/utils/auth";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -57,6 +58,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: string }) {
       </div>
       <section className="flex gap-4">
         <ConfirmButton>Confirm Order</ConfirmButton>
+
         <CancelButton>Cancel</CancelButton>
       </section>
     </section>
