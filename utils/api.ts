@@ -19,7 +19,6 @@ const getPaymentURL = process.env.NEXT_PUBLIC_PAYMENT_URL;
 
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
-  console.log(response);
   return response;
 }
 
@@ -105,7 +104,7 @@ export const addMovie = async (formValue: AddMovieFormInterface) => {
     });
 
     if (response.status === 200) {
-      alert(response.data.data);
+      alert("success");
     } else {
       console.error("Failed to upload movie:", response.statusText);
     }

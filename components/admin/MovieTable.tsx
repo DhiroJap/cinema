@@ -23,7 +23,6 @@ interface Movie {
 
 const MovieTable = () => {
   const [movies, setMovies] = useState<Movie[] | null>(null);
-  const router = useRouter();
 
   const fetchMovies = async () => {
     try {

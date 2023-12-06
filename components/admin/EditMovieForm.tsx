@@ -6,19 +6,6 @@ import { useRouter } from "next/navigation";
 import { editMovie, getMovieDetail } from "@/utils/api";
 import { EditMovieFormInterface } from "@/utils/types";
 
-interface FormData {
-  title: string;
-  director: string;
-  oldPoster: string;
-  newPoster: null;
-  synopsis: string;
-  duration: number;
-  releaseDate: string;
-  casts: string;
-  writer: string;
-  rating: string;
-}
-
 interface ErrorMessage {
   title: string;
   director: string;
@@ -31,23 +18,9 @@ interface ErrorMessage {
   rating: string;
 }
 
-interface Movie {
-  id: number;
-  title: string;
-  director: string;
-  poster: string;
-  synopsis: string;
-  duration: number;
-  releaseDate: string;
-  casts: string;
-  writer: string;
-  rating: string;
-  isPlaying: boolean;
-}
 const EditMovieForm = ({ id }: { id: string }) => {
   const router = useRouter();
 
-  // Initialize formData based on whether movieDetail is null
   const [formData, setFormData] = useState<EditMovieFormInterface>({
     id: -1,
     oldTitle: "",
@@ -168,108 +141,169 @@ const EditMovieForm = ({ id }: { id: string }) => {
     <div className="my-5 py-3 w-[70%]">
       <form onSubmit={handleSubmit}>
         <h2 className="font-bold text-3xl mb-3">Edit Movie Form</h2>
-        <label className="block mb-2" htmlFor="title">
-          Title
-        </label>
-        <InputForm
-          type="text"
-          id="title"
-          name="newTitle"
-          value={formData.newTitle}
-          onChange={handleChange}
-        />
 
-        <label className="block mb-2" htmlFor="director">
-          Director
-        </label>
-        <InputForm
-          type="text"
-          id="director"
-          name="director"
-          value={formData.director}
-          onChange={handleChange}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="title">
+            Title <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="newTitle"
+            name="newTitle"
+            value={formData.newTitle}
+            onChange={handleChange}
+          />
+          {errors.title && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.title}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="poster">
-          Poster
-        </label>
-        <InputForm
-          type="file"
-          id="poster"
-          name="newPoster"
-          accept="image/*"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="director">
+            Director <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="director"
+            name="director"
+            value={formData.director}
+            onChange={handleChange}
+          />
+          {errors.director && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.director}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="synopsis">
-          Synopsis
-        </label>
-        <TextareaForm
-          id="synopsis"
-          name="synopsis"
-          value={formData.synopsis}
-          onChange={handleChange}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="poster">
+            Poster
+          </label>
+          <InputForm
+            type="file"
+            id="poster"
+            name="newPoster"
+            accept="image/*"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e)
+            }
+          />
+        </div>
 
-        <label className="block mb-2" htmlFor="duration">
-          Duration (in minutes)
-        </label>
-        <InputForm
-          type="string"
-          id="duration"
-          name="duration"
-          value={formData.duration}
-          onChange={handleOnChangeDuration}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="synopsis">
+            Synopsis <span style={{ color: "red" }}>*</span>
+          </label>
+          <TextareaForm
+            id="synopsis"
+            name="synopsis"
+            value={formData.synopsis}
+            onChange={handleChange}
+          />
+          {errors.synopsis && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.synopsis}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="releaseDate">
-          Release Date
-        </label>
-        <InputForm
-          type="date"
-          id="releaseDate"
-          name="releaseDate"
-          value={formData.releaseDate}
-          onChange={handleChange}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="duration">
+            Duration (in minutes) <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="string"
+            id="duration"
+            name="duration"
+            value={formData.duration}
+            onChange={handleOnChangeDuration}
+          />
+          {errors.duration && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.duration}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="casts">
-          Casts
-        </label>
-        <InputForm
-          type="text"
-          id="casts"
-          name="casts"
-          value={formData.casts}
-          onChange={handleChange}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="releaseDate">
+            Release Date <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="date"
+            id="releaseDate"
+            name="releaseDate"
+            value={formData.releaseDate}
+            onChange={handleChange}
+          />
+          {errors.releaseDate && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.releaseDate}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="writer">
-          Writer
-        </label>
-        <InputForm
-          type="text"
-          id="writer"
-          name="writer"
-          value={formData.writer}
-          onChange={handleChange}
-        />
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="casts">
+            Casts <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="casts"
+            name="casts"
+            value={formData.casts}
+            onChange={handleChange}
+          />
+          {errors.casts && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.casts}
+            </span>
+          )}
+        </div>
 
-        <label className="block mb-2" htmlFor="rating">
-          Rating
-        </label>
-        <SelectForm
-          id="rating"
-          name="rating"
-          value={formData.rating}
-          onChange={handleChange}
-        >
-          <option value="">Select...</option>
-          <option value="SU">SU</option>
-          <option value="13+">13+</option>
-          <option value="17+">17+</option>
-          <option value="21+">21+</option>
-        </SelectForm>
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="writer">
+            Writer <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="writer"
+            name="writer"
+            value={formData.writer}
+            onChange={handleChange}
+          />
+          {errors.writer && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.writer}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="rating">
+            Rating <span style={{ color: "red" }}>*</span>
+          </label>
+          <SelectForm
+            id="rating"
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+          >
+            <option value="">Select...</option>
+            <option value="SU">SU</option>
+            <option value="13+">13+</option>
+            <option value="17+">17+</option>
+            <option value="21+">21+</option>
+          </SelectForm>
+          {errors.rating && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.rating}
+            </span>
+          )}
+        </div>
 
         <div className="flex justify-end mt-3">
           <PrimaryButton type="submit">Submit Movie</PrimaryButton>
