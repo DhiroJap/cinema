@@ -11,10 +11,11 @@ export const metadata: Metadata = {
   description: 'Payment Page',
 };
 
-export default function Payment() {
+export default function Payment({ params }: { params: { BookingHeaderID: number } }) {
   return (
     <Page display='flex' $justifyContent='center' $alignItems='center'>
-      <PaymentForm />
+      <PaymentForm BookingHeaderID={params.BookingHeaderID}/>
     </Page>
+    
   );
 }

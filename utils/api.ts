@@ -11,7 +11,8 @@ const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
-const getPaymentURL = process.env.NEXT_PUBLIC_PAYMENT_URL;
+const getPaymentURL: string = process.env.NEXT_PUBLIC_PAYMENT_URL!;
+
 
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
@@ -118,3 +119,17 @@ export async function GetBookingTime(id: string) {
   }
 }
 
+export async function GetPayment(BookingHeaderID: number) {
+  try{
+    console.log("test");
+    const response = await axios.get(getPaymentURL, {
+      params: {
+        bookingHeaderID: BookingHeaderID,
+      },
+    });
+    console.log(response.data);
+    return response;
+  }catch (error) {
+    console.error('Payment Error: ', error);
+  }
+}

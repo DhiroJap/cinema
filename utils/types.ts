@@ -48,3 +48,12 @@ export interface MovieTime {
   title: string;
   timeStart: string;
 }
+
+export interface pay {
+  paymentId: number;
+  movieName: string;
+  studio: string;
+  price: number;
+  timeStart: string;
+  studioSeat: [];
+}
