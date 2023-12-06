@@ -15,6 +15,7 @@ const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
 const deleteMovieURL: string = process.env.NEXT_PUBLIC_DELETEMOVIE_URL!;
 const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
+const getPaymentURL = process.env.NEXT_PUBLIC_PAYMENT_URL;
 
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
