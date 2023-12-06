@@ -49,6 +49,14 @@ export interface MovieTime {
   timeStart: string;
 }
 
+export interface pay {
+  paymentId: number;
+  movieName: string;
+  studio: string;
+  price: number;
+  timeStart: string;
+  studioSeat: [];
+}
 export interface AddMovieFormInterface {
   title: string;
   director: string;

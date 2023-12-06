@@ -12,6 +12,8 @@ const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
+const getPaymentURL: string = process.env.NEXT_PUBLIC_GETPAYMENT_URL!;
+const addPaymentURL: string = process.env.NEXT_PUBLIC_ADDPAYMENT_URL!;
 const deleteMovieURL: string = process.env.NEXT_PUBLIC_DELETEMOVIE_URL!;
 const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
@@ -62,6 +64,9 @@ export const postLogin = async (phoneNumber: string, password: string) => {
 export const getMovieDetail = async (id: string) => {
   try {
     const movieId = parseInt(id);
+
+    console.log(getMovieDetailURL);
+
     const response = await axios.get(getMovieDetailURL, {
       params: {
         movieID: movieId,
@@ -105,7 +110,7 @@ export const addMovie = async (formValue: AddMovieFormInterface) => {
     });
 
     if (response.status === 200) {
-      alert(response.data.data);
+      alert('success');
     } else {
       console.error('Failed to upload movie:', response.statusText);
     }
@@ -200,5 +205,59 @@ export async function PostBooking(
     return response.data;
   } catch (error) {
     console.log(error);
+  }
+}
+
+export async function GetPayment(BookingHeaderID: number) {
+  try {
+    const response = await axios.get(getPaymentURL, {
+      params: {
+        bookingHeaderID: BookingHeaderID,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Payment Error: ', error);
+  }
+}
+
+export async function AddPayment(paymentId: number) {
+  try {
+    const response = await axios.put(addPaymentURL, null, {
+      params: {
+        paymentID: paymentId,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Payment Error: ', error);
+  }
+}
+
+export async function GetPayment(BookingHeaderID: number) {
+  try {
+    const response = await axios.get(getPaymentURL, {
+      params: {
+        bookingHeaderID: BookingHeaderID,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Payment Error: ', error);
+  }
+}
+
+export async function AddPayment(paymentId: number) {
+  try {
+    const response = await axios.put(addPaymentURL, null, {
+      params: {
+        paymentID: paymentId,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Payment Error: ', error);
   }
 }

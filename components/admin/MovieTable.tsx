@@ -25,7 +25,6 @@ interface Movie {
 export default function MovieTable() {
   lockRoute();
   const [movies, setMovies] = useState<Movie[] | null>(null);
-  const router = useRouter();
 
   const fetchMovies = async () => {
     try {

@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 import { CancelButton, ConfirmButton, SeatIcon, TheaterScreen } from '@/styles';
 import { PostBooking, getBookingSeat } from '@/utils/api';
 import { lockRoute } from '@/utils/auth';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +22,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
 
   useEffect(() => {
     const getSeat = async () => {
-      const response = await getBookingSeat(scheduleId);
+      const response = await getBookingSeat(parseInt(scheduleId));
       dispatch(getSeatData(response.data));
     };
     getSeat();
@@ -40,7 +41,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
       if (user?.id) {
         const response = await PostBooking(scheduleId, user.id, selectedSeats);
         const bookingHeaderID = await response.data.bookingHeaderID;
-        console.log(bookingHeaderID);
+        router.push('/payment');
       }
     } catch (error) {
       console.log(error);
@@ -102,6 +103,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
         <ConfirmButton onClick={handleConfirmOrder}>
           Confirm Order
         </ConfirmButton>
+
         <CancelButton onClick={handleCancelOrder}>Cancel</CancelButton>
       </section>
     </section>
