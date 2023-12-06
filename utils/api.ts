@@ -207,11 +207,11 @@ export async function PostBooking(
   }
 }
 
-export async function GetPayment(BookingHeaderID: number) {
+export async function GetPayment(bookingHeaderId: number) {
   try {
     const response = await axios.get(getPaymentURL, {
       params: {
-        bookingHeaderID: BookingHeaderID,
+        bookingHeaderID: bookingHeaderId,
       },
     });
     return response.data;

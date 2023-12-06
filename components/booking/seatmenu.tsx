@@ -40,8 +40,8 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
     try {
       if (user?.id) {
         const response = await PostBooking(scheduleId, user.id, selectedSeats);
-        const bookingHeaderID = await response.data.bookingHeaderID;
-        router.push(`/payment/${bookingHeaderID}`);
+        const bookingHeaderId = await response.data.bookingHeaderID;
+        router.push(`/payment/${bookingHeaderId}`);
       }
     } catch (error) {
       console.log(error);
