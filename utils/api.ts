@@ -12,15 +12,14 @@ const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
-const getPaymentURL: string = process.env.NEXT_PUBLIC_PAYMENT_URL!;
+const getPaymentURL: string = process.env.NEXT_PUBLIC_GETPAYMENT_URL!;
+const addPaymentURL: string = process.env.NEXT_PUBLIC_ADDPAYMENT_URL!;
 const deleteMovieURL: string = process.env.NEXT_PUBLIC_DELETEMOVIE_URL!;
 const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
 
-
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
-  console.log(response);
   return response;
 }
 
@@ -73,7 +72,6 @@ export const getMovieDetail = async (id: string) => {
     });
     return response.data;
   } catch (error: any) {
-
     return error.response?.data;
   }
 };
@@ -110,7 +108,7 @@ export const addMovie = async (formValue: AddMovieFormInterface) => {
     });
 
     if (response.status === 200) {
-      alert(response.data.data);
+      alert("success");
     } else {
       console.error("Failed to upload movie:", response.statusText);
     }
@@ -192,16 +190,28 @@ export async function GetBookingTime(id: string) {
 }
 
 export async function GetPayment(BookingHeaderID: number) {
-  try{
-    console.log("test");
+  try {
     const response = await axios.get(getPaymentURL, {
       params: {
         bookingHeaderID: BookingHeaderID,
       },
     });
+    return response.data;
+  } catch (error) {
+    console.error("Payment Error: ", error);
+  }
+}
+
+export async function AddPayment(paymentId: number) {
+  try {
+    const response = await axios.put(addPaymentURL, null, {
+      params: {
+        paymentID: paymentId,
+      },
+    });
     console.log(response.data);
-    return response;
-  }catch (error) {
-    console.error('Payment Error: ', error);
+    return response.data;
+  } catch (error) {
+    console.error("Payment Error: ", error);
   }
 }

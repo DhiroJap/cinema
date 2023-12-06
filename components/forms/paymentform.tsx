@@ -1,63 +1,79 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { InputContainer, InputLabel, NewButton } from '@/styles';
-import { lockRoute } from '@/utils/auth';
-import { useRouter } from 'next/router';
-import { GetPayment } from '@/utils/api';
+import React, { useEffect, useState } from "react";
+import { InputContainer, InputLabel, NewButton } from "@/styles";
+import { lockRoute } from "@/utils/auth";
+import { useRouter } from "next/router";
+import { AddPayment, GetPayment } from "@/utils/api";
 
 interface pay {
-  paymentId: number;
+  paymentID: number;
   movieName: string;
   studio: string;
-  price: number;
-  timeStart: string;
-  studioSeat: [];
+  amount: number;
+  timestart: string;
+  studioSeats: string[];
 }
 
-export default function PaymentForm ({BookingHeaderID}: { BookingHeaderID: number } )  {
+export default function PaymentForm({
+  BookingHeaderID,
+}: {
+  BookingHeaderID: number;
+}) {
   lockRoute();
   // const router = useRouter();
-  const [booking ,setBooking] = useState<pay[]>([]);
-
+  const [booking, setBooking] = useState<pay>({
+    paymentID: 0,
+    movieName: "",
+    studio: "",
+    amount: 0,
+    timestart: "",
+    studioSeats: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await GetPayment(BookingHeaderID);
-        const data = await response?.json();
-
-        console.log(data.data);
-        setBooking(data.data);
-
+        setBooking(response.data);
       } catch (error) {
-        console.error('Error fetching data : ', error);
+        console.error("Error fetching data : ", error);
       }
     };
 
     fetchData();
   }, [BookingHeaderID]);
 
+  const handleClick = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await AddPayment(booking.paymentID);
+  };
+
   return (
-    <form className='w-200 flex flex-col gap-2'>
+    <form className="w-200 flex flex-col gap-2" onSubmit={handleClick}>
       <InputContainer>
-        <InputLabel htmlFor='seatnumber'>
-        Seat Number: {booking.length > 0 && booking[0].studioSeat.join(', ')}
-          </InputLabel>
+        <InputLabel htmlFor="seatnumber">
+          Seat Number:
+          {booking?.studioSeats?.length > 0 && booking.studioSeats.join(", ")}
+        </InputLabel>
       </InputContainer>
 
       <InputContainer>
-        <InputLabel htmlFor='Time'>
-          Time: {booking.length > 0 && booking[0].timeStart}
-          </InputLabel>
+        <InputLabel htmlFor="Time">
+          Time:{" "}
+          {booking?.timestart &&
+            new Date(booking.timestart).toLocaleString(undefined, {
+              timeZone: "UTC",
+            })}
+        </InputLabel>
       </InputContainer>
 
-      <h1>Total Payment: {booking.length > 0 && booking[0].price}</h1>
+      <h1>Total Payment: {booking?.amount}</h1>
 
-      <section className='flex justify-between gap-2'>
-        <NewButton>Confirm Order</NewButton>
+      <section className="flex justify-between gap-2">
+        <NewButton type="submit">Confirm Order</NewButton>
         <NewButton>Cancel</NewButton>
       </section>
     </form>
   );
-};
+}
