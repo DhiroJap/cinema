@@ -1,14 +1,16 @@
 "use client";
 import { PrimaryButton, InputForm, TextareaForm, SelectForm } from "@/styles";
-import { formValidation } from "@/utils/formValidator/formValidator";
+import { editFormValidation } from "@/utils/formValidator/formValidator";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getMovieDetail } from "@/utils/api";
+import { editMovie, getMovieDetail } from "@/utils/api";
+import { EditMovieFormInterface } from "@/utils/types";
 
 interface FormData {
   title: string;
   director: string;
-  poster: File | null;
+  oldPoster: string;
+  newPoster: null;
   synopsis: string;
   duration: number;
   releaseDate: string;
@@ -46,10 +48,13 @@ const EditMovieForm = ({ id }: { id: string }) => {
   const router = useRouter();
 
   // Initialize formData based on whether movieDetail is null
-  const [formData, setFormData] = useState<FormData>({
-    title: "",
+  const [formData, setFormData] = useState<EditMovieFormInterface>({
+    id: -1,
+    oldTitle: "",
+    newTitle: "",
     director: "",
-    poster: null,
+    oldPoster: "",
+    newPoster: null,
     synopsis: "",
     duration: 0,
     releaseDate: "",
@@ -102,9 +107,28 @@ const EditMovieForm = ({ id }: { id: string }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // const formValidationMessage = formValidation(formData);
-    // setErrors(formValidationMessage);
-    // console.log(errors);
+    const formValidationMessage = editFormValidation(formData);
+    setErrors({
+      title: formValidationMessage.title,
+      director: formValidationMessage.director,
+      poster: formValidationMessage.poster,
+      synopsis: formValidationMessage.synopsis,
+      duration: formValidationMessage.duration,
+      releaseDate: formValidationMessage.releaseDate,
+      casts: formValidationMessage.casts,
+      writer: formValidationMessage.writer,
+      rating: formValidationMessage.rating,
+    });
+
+    const areAllErrorsEmpty = Object.values(formValidationMessage).every(
+      (error) => error === ""
+    );
+
+    if (areAllErrorsEmpty) {
+      editMovie(formData);
+    } else {
+      console.log(errors);
+    }
   };
 
   useEffect(() => {
@@ -120,9 +144,12 @@ const EditMovieForm = ({ id }: { id: string }) => {
           date.getMonth() + 1
         ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
         setFormData({
-          title: response.data.title,
+          id: response.data.id,
+          oldTitle: response.data.title,
+          newTitle: response.data.title,
           director: response.data.director,
-          poster: null,
+          oldPoster: response.data.poster,
+          newPoster: null,
           synopsis: response.data.synopsis,
           duration: response.data.duration,
           releaseDate: formattedDate,
@@ -140,15 +167,15 @@ const EditMovieForm = ({ id }: { id: string }) => {
   return (
     <div className="my-5 py-3 w-[70%]">
       <form onSubmit={handleSubmit}>
-        <h2 className="font-bold text-3xl mb-3">Add Movie Form</h2>
+        <h2 className="font-bold text-3xl mb-3">Edit Movie Form</h2>
         <label className="block mb-2" htmlFor="title">
           Title
         </label>
         <InputForm
           type="text"
           id="title"
-          name="title"
-          value={formData.title}
+          name="newTitle"
+          value={formData.newTitle}
           onChange={handleChange}
         />
 
@@ -169,7 +196,7 @@ const EditMovieForm = ({ id }: { id: string }) => {
         <InputForm
           type="file"
           id="poster"
-          name="poster"
+          name="newPoster"
           accept="image/*"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />

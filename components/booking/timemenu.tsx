@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { GetBookingTime, getMovieDetail } from '@/utils/api';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { NewButton, TimeButton } from '@/styles';
-import { lockRoute } from '@/utils/auth';
-import { Movies } from '@/utils/types';
-import { pathToPoster } from '@/utils/const';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/redux/store';
-import { selectSchedule, setSchedule } from '@/redux/slices/timeSlice';
-import Modal from '../shared/modal';
+import { GetBookingTime, getMovieDetail } from "@/utils/api";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { NewButton, TimeButton } from "@/styles";
+import { lockRoute } from "@/utils/auth";
+import { Movies } from "@/utils/types";
+import { pathToPoster } from "@/utils/const";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { selectSchedule, setSchedule } from "@/redux/slices/timeSlice";
+import Modal from "../shared/modal";
 
 interface Schedule {
   scheduleId: number;
@@ -59,7 +59,7 @@ export default function TimeMenu({ id }: { id: string }) {
         setBookingTime(data.data);
         setDetail(detail.data);
       } catch (error) {
-        console.error('Error fetching data : ', error);
+        console.error("Error fetching data : ", error);
       }
     };
 
@@ -67,34 +67,34 @@ export default function TimeMenu({ id }: { id: string }) {
   }, [id]);
 
   const formatTime = (timeString: string): string => {
-    const formattedTime = new Date(timeString).toLocaleString('en-US', {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
+    const formattedTime = new Date(timeString).toLocaleString("en-US", {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
     });
     return formattedTime;
   };
 
   return (
-    <div className='flex-col w-[70%]'>
-      <div className='flex'>
-        <img src={`${detail?.poster}`} className='h-[500px]' />
-        <div className='flex-col px-5'>
-          <div className='w-[80%]'>
-            <h2 className='text-3xl mb-10'>{detail?.title}</h2>
+    <div className="flex-col w-[70%]">
+      <div className="flex">
+        <img src={detail?.poster} className="h-[500px]" />
+        <div className="flex-col px-5">
+          <div className="w-[80%]">
+            <h2 className="text-3xl mb-10">{detail?.title}</h2>
           </div>
-          <div className='flex items-center justify-center space-x-2'>
+          <div className="flex items-center justify-center space-x-2">
             {bookingTime.map((schedule) => (
               <TimeButton
                 key={schedule.scheduleId}
                 onClick={() => dispatch(selectSchedule(schedule.scheduleId))}
                 className={`${
                   selectScheduleId === schedule.scheduleId
-                    ? 'bg-secondary border-customwhite-1 text-customwhite-1'
-                    : ''
+                    ? "bg-secondary border-customwhite-1 text-customwhite-1"
+                    : ""
                 } py-2 px-4 rounded border-2 transition duration-300 ease-in-out`}
               >
                 {formatTime(schedule.timeStart)}
@@ -102,8 +102,8 @@ export default function TimeMenu({ id }: { id: string }) {
             ))}
           </div>
 
-          <div className='mt-8'>
-            <NewButton className='mt-8' onClick={confirmClick}>
+          <div className="mt-8">
+            <NewButton className="mt-8" onClick={confirmClick}>
               Choose seat
             </NewButton>
           </div>
