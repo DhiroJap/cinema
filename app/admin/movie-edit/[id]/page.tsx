@@ -1,9 +1,9 @@
-import EditMovieForm from "@/components/admin/EditMovieForm";
-import { Page } from "@/styles";
+import EditMovieForm from '@/components/admin/EditMovieForm';
+import { Page } from '@/styles';
 
-export default function MovieEdit({ params }: { params: { id: string } }) {
+export default function EditMoviePage({ params }: { params: { id: string } }) {
   return (
-    <Page display="flex" $justifyContent="center" $alignItems="center">
+    <Page display='flex' $justifyContent='center' $alignItems='center'>
       <EditMovieForm id={params.id as string} />
     </Page>
   );

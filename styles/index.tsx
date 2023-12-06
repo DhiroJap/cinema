@@ -241,6 +241,9 @@ export const TheaterScreen = styled.div`
   margin: 15px 0;
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  font-weight: bolder;
 `;
 
 export const ConfirmButton = styled.button`

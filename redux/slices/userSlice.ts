@@ -1,4 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+
+enum UserRole {
+  User = 'User',
+  Admin = 'Admin',
+}
 
 interface UserState {
   user: {
@@ -8,6 +14,7 @@ interface UserState {
     email: string;
     gender: string;
     birthdate: string;
+    role: UserRole;
   } | null;
   token: string | null;
 }

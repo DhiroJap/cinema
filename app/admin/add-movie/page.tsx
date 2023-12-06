@@ -1,11 +1,11 @@
-"use client";
-import AddMovieForm from "@/components/admin/AddMovieForm";
-import MovieTable from "@/components/admin/MovieTable";
-import { Page } from "@/styles";
+'use client';
 
-export default function Payment() {
+import AddMovieForm from '@/components/admin/AddMovieForm';
+import { Page } from '@/styles';
+
+export default function AddMoviePage() {
   return (
-    <Page display="flex" $justifyContent="center" $alignItems="center">
+    <Page display='flex' $justifyContent='center' $alignItems='center'>
       <AddMovieForm />
     </Page>
   );

@@ -13,10 +13,12 @@ interface SeatRow {
 
 interface SeatState {
   seats: SeatRow[];
+  selectedSeats: number[];
 }
 
 const initialState: SeatState = {
   seats: [],
+  selectedSeats: [],
 };
 
 export const seatSlice = createSlice({
@@ -26,8 +28,18 @@ export const seatSlice = createSlice({
     getSeatData: (state, action: PayloadAction<SeatRow[]>) => {
       state.seats = action.payload;
     },
+    selectSeat(state, action) {
+      const seatId = action.payload;
+      const seatIndex = state.selectedSeats.indexOf(seatId);
+
+      if (seatIndex === -1) {
+        state.selectedSeats.push(seatId);
+      } else {
+        state.selectedSeats.splice(seatIndex, 1);
+      }
+    },
   },
 });
 
-export const { getSeatData } = seatSlice.actions;
+export const { getSeatData, selectSeat } = seatSlice.actions;
 export default seatSlice.reducer;

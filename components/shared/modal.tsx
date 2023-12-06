@@ -12,6 +12,7 @@ import {
 } from '@/styles';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function Modal({
   onConfirm,
@@ -23,14 +24,39 @@ export default function Modal({
   const user = useSelector((state: RootState) => state.user.user);
   const [inputEmail, setInputEmail] = useState('');
   const [emailMatch, setEmailMatch] = useState(true);
+  const [lastErrorTime, setLastErrorTime] = useState(0);
 
+  const COOLDOWN_TIME = 5000;
   const handleConfirm = () => {
+    const currentTime = Date.now();
     if (inputEmail === user?.email) {
+      toast.success('Success!', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
       setEmailMatch(true);
       onConfirm();
     } else {
-      console.log(inputEmail);
-      console.log(user?.email);
+      if (currentTime - lastErrorTime < COOLDOWN_TIME) {
+        return;
+      }
+      toast.error('Wrong Email! Are you sure you inputted the correct email?', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+      setLastErrorTime(currentTime);
       setEmailMatch(false);
     }
   };
