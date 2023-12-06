@@ -48,3 +48,30 @@ export interface MovieTime {
   title: string;
   timeStart: string;
 }
+
+export interface AddMovieFormInterface {
+  title: string;
+  director: string;
+  poster: File | null;
+  synopsis: string;
+  duration: number;
+  releaseDate: string;
+  casts: string;
+  writer: string;
+  rating: string;
+}
+
+export interface EditMovieFormInterface {
+  id: number;
+  oldTitle: string;
+  newTitle: string;
+  director: string;
+  oldPoster: string;
+  newPoster: File | null;
+  synopsis: string;
+  duration: number;
+  releaseDate: string;
+  casts: string;
+  writer: string;
+  rating: string;
+}

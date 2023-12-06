@@ -1,18 +1,9 @@
 import { PrimaryButton, InputForm, TextareaForm, SelectForm } from "@/styles";
-import { formValidation } from "@/utils/formValidator/formValidator";
+import { addMovie } from "@/utils/api";
+import { addFormValidation } from "@/utils/formValidator/formValidator";
+import { AddMovieFormInterface } from "@/utils/types";
+import axios from "axios";
 import React, { useState } from "react";
-
-interface FormData {
-  title: string;
-  director: string;
-  poster: File | null;
-  synopsis: string;
-  duration: number;
-  releaseDate: string;
-  casts: string;
-  writer: string;
-  rating: string;
-}
 
 interface ErrorMessage {
   title: string;
@@ -26,7 +17,7 @@ interface ErrorMessage {
   rating: string;
 }
 const AddMovieForm = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<AddMovieFormInterface>({
     title: "",
     director: "",
     poster: null,
@@ -81,9 +72,29 @@ const AddMovieForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const formValidationMessage = formValidation(formData);
-    setErrors(formValidationMessage);
-    console.log(errors);
+
+    const formValidationMessage = addFormValidation(formData);
+    setErrors({
+      title: formValidationMessage.title,
+      director: formValidationMessage.director,
+      poster: formValidationMessage.poster,
+      synopsis: formValidationMessage.synopsis,
+      duration: formValidationMessage.duration,
+      releaseDate: formValidationMessage.releaseDate,
+      casts: formValidationMessage.casts,
+      writer: formValidationMessage.writer,
+      rating: formValidationMessage.rating,
+    });
+
+    const areAllErrorsEmpty = Object.values(formValidationMessage).every(
+      (error) => error === ""
+    );
+
+    if (areAllErrorsEmpty) {
+      addMovie(formData);
+    } else {
+      console.log(errors);
+    }
   };
 
   return (

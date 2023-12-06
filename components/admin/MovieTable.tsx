@@ -9,7 +9,8 @@ import {
   PrimaryButton,
 } from "@/styles";
 import Link from "next/link";
-import { getMovies } from "@/utils/api";
+import { GetNowPlaying, GetUpcoming, deleteMovie } from "@/utils/api";
+import axios from "axios";
 
 interface Movie {
   id: number;
@@ -24,22 +25,38 @@ const MovieTable = () => {
   const [movies, setMovies] = useState<Movie[] | null>(null);
   const router = useRouter();
 
+  const fetchMovies = async () => {
+    try {
+      const nowPlayingResponse = await GetNowPlaying().then((response) =>
+        response.json()
+      );
+      const upcomingResponse = await GetUpcoming().then((response) =>
+        response.json()
+      );
+      const nowPlayingMovies = nowPlayingResponse.data.map((movie: Movie) => ({
+        ...movie,
+        isPlaying: true,
+      }));
+      const upcomingMovies = upcomingResponse.data.map((movie: Movie) => ({
+        ...movie,
+        isPlaying: false,
+      }));
+      const combinedMovies = [...nowPlayingMovies, ...upcomingMovies];
+
+      setMovies(combinedMovies);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchMovieDetail = async () => {
-      try {
-        const response = await getMovies();
-        if (response.data === null) {
-          alert(response.message);
-          router.push("/");
-        }
-        console.log(response.data);
-        setMovies(response.data);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    };
-    fetchMovieDetail();
+    fetchMovies();
   }, []);
+
+  const handleDelete: (movieId: number) => void = async (movieId) => {
+    const response = await deleteMovie(movieId);
+    fetchMovies();
+  };
 
   return (
     <div className="p-5 w-[80%]">
@@ -68,10 +85,12 @@ const MovieTable = () => {
                 <Td>{movie.rating}</Td>
                 <Td>{movie.isPlaying === true ? "Now Playing" : "Upcoming"}</Td>
                 <Td>
-                  <Link href="/admin/movie-edit/1">
+                  <Link href={`/admin/movie-edit/${movie.id}`}>
                     <EditButtons>Edit</EditButtons>
                   </Link>
-                  <DeleteButtons>Delete</DeleteButtons>
+                  <DeleteButtons onClick={() => handleDelete(movie.id)}>
+                    Delete
+                  </DeleteButtons>
                 </Td>
               </tr>
             ))}
