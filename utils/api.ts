@@ -11,6 +11,7 @@ const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
+const getPaymentURL = process.env.NEXT_PUBLIC_PAYMENT_URL;
 
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
@@ -112,3 +113,4 @@ export async function GetBookingTime(id: string) {
     console.error('Error fetching schedules:', error);
   }
 }
+
