@@ -22,7 +22,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
 
   useEffect(() => {
     const getSeat = async () => {
-      const response = await getBookingSeat(parseInt(scheduleId));
+      const response = await getBookingSeat(scheduleId);
       dispatch(getSeatData(response.data));
     };
     getSeat();
@@ -41,7 +41,7 @@ export default function SeatMenu({ scheduleId }: { scheduleId: number }) {
       if (user?.id) {
         const response = await PostBooking(scheduleId, user.id, selectedSeats);
         const bookingHeaderID = await response.data.bookingHeaderID;
-        router.push('/payment');
+        router.push(`/payment/${bookingHeaderID}`);
       }
     } catch (error) {
       console.log(error);

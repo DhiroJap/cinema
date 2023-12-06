@@ -17,7 +17,6 @@ const addPaymentURL: string = process.env.NEXT_PUBLIC_ADDPAYMENT_URL!;
 const deleteMovieURL: string = process.env.NEXT_PUBLIC_DELETEMOVIE_URL!;
 const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
-const getPaymentURL = process.env.NEXT_PUBLIC_PAYMENT_URL;
 const addBookingURL = process.env.NEXT_PUBLIC_ADDBOOKING_URL;
 
 export async function GetNowPlaying() {
@@ -205,33 +204,6 @@ export async function PostBooking(
     return response.data;
   } catch (error) {
     console.log(error);
-  }
-}
-
-export async function GetPayment(BookingHeaderID: number) {
-  try {
-    const response = await axios.get(getPaymentURL, {
-      params: {
-        bookingHeaderID: BookingHeaderID,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Payment Error: ', error);
-  }
-}
-
-export async function AddPayment(paymentId: number) {
-  try {
-    const response = await axios.put(addPaymentURL, null, {
-      params: {
-        paymentID: paymentId,
-      },
-    });
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error('Payment Error: ', error);
   }
 }
 
