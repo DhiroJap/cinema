@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { AddMovieFormInterface, EditMovieFormInterface } from './types';
+const https = require('https');
 
 const getNowPlayingMoviesURL: string =
   process.env.NEXT_PUBLIC_GETNOWPLAYINGMOVIES_URL!;
@@ -19,14 +19,28 @@ const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
 const addBookingURL = process.env.NEXT_PUBLIC_ADDBOOKING_URL;
 
+const agent = new https.Agent({
+  rejectUnauthorized: false,
+});
+
 export async function GetNowPlaying() {
-  const response = await fetch(getNowPlayingMoviesURL);
-  return response;
+  const response = await axios.get(getNowPlayingMoviesURL, {
+    params: {
+      status: 'now_playing',
+    },
+    httpsAgent: agent,
+  });
+  return response.data;
 }
 
 export async function GetUpcoming() {
-  const response = await fetch(getUpcomingMoviesURL);
-  return response;
+  const response = await axios.get(getUpcomingMoviesURL, {
+    params: {
+      status: 'upcoming',
+    },
+    httpsAgent: agent,
+  });
+  return response.data;
 }
 
 let lastErrorTime = 0;

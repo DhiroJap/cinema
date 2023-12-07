@@ -12,10 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function UpcomingPage() {
-  const response = await GetUpcoming();
-  const movies = await response.json();
-  const upcoming = await movies.data;
-
   return (
     <Page display='flex' $justifyContent='center' className='my-20'>
       <FullUpcoming />

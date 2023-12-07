@@ -10,17 +10,17 @@ const FullUpcoming = () => {
   const [upcoming, setUpcoming] = useState<UpcomingType[]>([]);
 
   useEffect(() => {
-    const fetchNowPlaying = async () => {
+    const fetchFullUpcoming = async () => {
       try {
         const response = await GetUpcoming();
-        const data = await response.json();
-        setUpcoming(data.data);
+        console.log(response.data);
+        setUpcoming(response.data);
       } catch (error) {
         console.error('Error fetching now playing movies:', error);
       }
     };
 
-    fetchNowPlaying();
+    fetchFullUpcoming();
   }, []);
 
   return (
@@ -29,7 +29,7 @@ const FullUpcoming = () => {
         Upcoming
       </MovieStatus>
       <div className='grid grid-cols-4 gap-10'>
-        {upcoming.map((movie: UpcomingType) => (
+        {upcoming?.map((movie: UpcomingType) => (
           <MoviePlaceholder key={movie.id}>
             <Link href={`/movies/${movie.id}`}>
               <img
