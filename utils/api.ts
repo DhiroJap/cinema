@@ -92,6 +92,7 @@ export const getBookingSeat = async (scheduleId: number) => {
 };
 
 export const addMovie = async (formValue: AddMovieFormInterface) => {
+  console.log(addMovieURL);
   try {
     const formDataForApi = new FormData();
     formDataForApi.append("posterImage", formValue.poster as File);
