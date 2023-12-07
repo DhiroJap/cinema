@@ -7,7 +7,16 @@ import registerReducer from './slices/registerSlice';
 import seatReducer from './slices/seatSlice';
 import authReducer from './slices/authSlice';
 import timeReducer from './slices/timeSlice';
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
@@ -27,6 +36,12 @@ export const store = configureStore({
     auth: authReducer,
     time: timeReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

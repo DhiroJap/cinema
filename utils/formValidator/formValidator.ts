@@ -32,11 +32,11 @@ export const addFormValidation = (formData: AddMovieFormInterface) => {
   }
 
   if (formData.duration == 0 || isNaN(formData.duration)) {
-    errors.duration = "Duration is required and must be a number";
+    errors.duration = "Duration is required";
   }
 
   if (!formData.releaseDate || isNaN(Date.parse(formData.releaseDate))) {
-    errors.releaseDate = "Release Date is required and must be a valid date";
+    errors.releaseDate = "Release Date is required";
   }
 
   if (!formData.casts || formData.casts.trim() === "") {
@@ -86,11 +86,11 @@ export const editFormValidation = (formData: EditMovieFormInterface) => {
   }
 
   if (formData.duration == 0 || isNaN(formData.duration)) {
-    errors.duration = "Duration is required and must be a number";
+    errors.duration = "Duration is required";
   }
 
   if (!formData.releaseDate || isNaN(Date.parse(formData.releaseDate))) {
-    errors.releaseDate = "Release Date is required and must be a valid date";
+    errors.releaseDate = "Release Date is required";
   }
 
   if (!formData.casts || formData.casts.trim() === "") {

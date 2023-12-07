@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { postLogin } from '@/utils/api';
 import { ToastContainer, toast } from 'react-toastify';
 import { setUser } from '@/redux/slices/userSlice';
+import { useState } from 'react';
 
 export default function LoginForm() {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +23,8 @@ export default function LoginForm() {
   const isUpperCaseMissing = !/(?=.*[A-Z])/.test(password);
   const isNumberMissing = !/(?=.*\d)/.test(password);
   const isSymbolMissing = !/(?=.*[!@#$%^&*])/.test(password);
+  const [errorCooldown, setErrorCooldown] = useState(false);
+  const COOLDOWN_TIME = 5000;
 
   const loginAction = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +52,7 @@ export default function LoginForm() {
         errorMessages.push('Password must contain at least one symbol.');
       }
 
-      if (errorMessages.length > 0) {
+      if (errorMessages.length > 0 && !errorCooldown) {
         errorMessages.forEach((message) => {
           toast.error(message, {
             position: 'bottom-left',
@@ -61,8 +64,12 @@ export default function LoginForm() {
             progress: undefined,
             theme: 'dark',
           });
-          return;
         });
+        setErrorCooldown(true);
+
+        setTimeout(() => {
+          setErrorCooldown(false);
+        }, COOLDOWN_TIME);
       }
       return;
     }
@@ -71,7 +78,7 @@ export default function LoginForm() {
     try {
       if (response) {
         const { user, token } = response.data;
-        const { id, name, phoneNumber, email, gender, birthdate } = user;
+        const { role, id, name, phoneNumber, email, gender, birthdate } = user;
         dispatch(
           setUser({
             user: {
@@ -81,6 +88,7 @@ export default function LoginForm() {
               email,
               gender,
               birthdate,
+              role,
             },
             token,
           })

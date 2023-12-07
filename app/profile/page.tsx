@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: 'Profile Page',
 };
 
-export default function Profile() {
+export default function ProfilePage() {
   return (
-    <Page display='flex' $justifyContent='center' $alignItems='center'>
+    <Page display='flex'>
       <ProfileCard />
     </Page>
   );

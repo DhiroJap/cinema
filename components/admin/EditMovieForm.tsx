@@ -1,23 +1,11 @@
-"use client";
-import { PrimaryButton, InputForm, TextareaForm, SelectForm } from "@/styles";
-import { editFormValidation } from "@/utils/formValidator/formValidator";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { editMovie, getMovieDetail } from "@/utils/api";
-import { EditMovieFormInterface } from "@/utils/types";
-
-interface FormData {
-  title: string;
-  director: string;
-  oldPoster: string;
-  newPoster: null;
-  synopsis: string;
-  duration: number;
-  releaseDate: string;
-  casts: string;
-  writer: string;
-  rating: string;
-}
+'use client';
+import { PrimaryButton, InputForm, TextareaForm, SelectForm } from '@/styles';
+import { editFormValidation } from '@/utils/formValidator/formValidator';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { editMovie, getMovieDetail } from '@/utils/api';
+import { EditMovieFormInterface } from '@/utils/types';
+import { lockRoute } from '@/utils/auth';
 
 interface ErrorMessage {
   title: string;
@@ -31,6 +19,7 @@ interface ErrorMessage {
   rating: string;
 }
 
+<<<<<<< HEAD
 interface Movie {
   id: number;
   title: string;
@@ -44,35 +33,38 @@ interface Movie {
   rating: string;
   isPlaying: boolean;
 }
+export default function EditMovieForm({ id }: { id: string }) {
+  lockRoute();
+=======
 const EditMovieForm = ({ id }: { id: string }) => {
+>>>>>>> 25e0182e2ee7e9ae0055d9aa961e92be425ac008
   const router = useRouter();
 
-  // Initialize formData based on whether movieDetail is null
   const [formData, setFormData] = useState<EditMovieFormInterface>({
     id: -1,
-    oldTitle: "",
-    newTitle: "",
-    director: "",
-    oldPoster: "",
+    oldTitle: '',
+    newTitle: '',
+    director: '',
+    oldPoster: '',
     newPoster: null,
-    synopsis: "",
+    synopsis: '',
     duration: 0,
-    releaseDate: "",
-    casts: "",
-    writer: "",
-    rating: "",
+    releaseDate: '',
+    casts: '',
+    writer: '',
+    rating: '',
   });
 
   const [errors, setErrors] = useState<ErrorMessage>({
-    title: "",
-    director: "",
-    poster: "",
-    synopsis: "",
-    duration: "",
-    releaseDate: "",
-    casts: "",
-    writer: "",
-    rating: "",
+    title: '',
+    director: '',
+    poster: '',
+    synopsis: '',
+    duration: '',
+    releaseDate: '',
+    casts: '',
+    writer: '',
+    rating: '',
   });
 
   const handleChange = (
@@ -85,7 +77,7 @@ const EditMovieForm = ({ id }: { id: string }) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]:
-        type === "file" && "files" in e.target && e.target.files?.length
+        type === 'file' && 'files' in e.target && e.target.files?.length
           ? e.target.files[0]
           : value,
     }));
@@ -95,7 +87,7 @@ const EditMovieForm = ({ id }: { id: string }) => {
     const { name, value } = e.target;
 
     let parsedValue = 0;
-    if (value !== "") {
+    if (value !== '') {
       parsedValue = parseInt(value);
     }
     setFormData((prevData) => ({
@@ -121,7 +113,7 @@ const EditMovieForm = ({ id }: { id: string }) => {
     });
 
     const areAllErrorsEmpty = Object.values(formValidationMessage).every(
-      (error) => error === ""
+      (error) => error === ''
     );
 
     if (areAllErrorsEmpty) {
@@ -137,12 +129,12 @@ const EditMovieForm = ({ id }: { id: string }) => {
         const response = await getMovieDetail(id);
         if (response.data === null) {
           alert(response.message);
-          router.push("/");
+          router.push('/');
         }
         const date = new Date(response.data.releaseDate);
         const formattedDate = `${date.getFullYear()}-${String(
           date.getMonth() + 1
-        ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+        ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
         setFormData({
           id: response.data.id,
           oldTitle: response.data.title,
@@ -158,125 +150,290 @@ const EditMovieForm = ({ id }: { id: string }) => {
           rating: response.data.rating,
         });
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error('Error fetching movies:', error);
       }
     };
     fetchMovieDetail();
   }, []);
 
   return (
-    <div className="my-5 py-3 w-[70%]">
+    <div className='my-5 py-3 w-[70%]'>
       <form onSubmit={handleSubmit}>
-        <h2 className="font-bold text-3xl mb-3">Edit Movie Form</h2>
-        <label className="block mb-2" htmlFor="title">
+<<<<<<< HEAD
+        <h2 className='font-bold text-3xl mb-3'>Edit Movie Form</h2>
+        <label className='block mb-2' htmlFor='title'>
           Title
         </label>
         <InputForm
-          type="text"
-          id="title"
-          name="newTitle"
+          type='text'
+          id='title'
+          name='newTitle'
           value={formData.newTitle}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="director">
+        <label className='block mb-2' htmlFor='director'>
           Director
         </label>
         <InputForm
-          type="text"
-          id="director"
-          name="director"
+          type='text'
+          id='director'
+          name='director'
           value={formData.director}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="poster">
+        <label className='block mb-2' htmlFor='poster'>
           Poster
         </label>
         <InputForm
-          type="file"
-          id="poster"
-          name="newPoster"
-          accept="image/*"
+          type='file'
+          id='poster'
+          name='newPoster'
+          accept='image/*'
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
         />
 
-        <label className="block mb-2" htmlFor="synopsis">
+        <label className='block mb-2' htmlFor='synopsis'>
           Synopsis
         </label>
         <TextareaForm
-          id="synopsis"
-          name="synopsis"
+          id='synopsis'
+          name='synopsis'
           value={formData.synopsis}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="duration">
+        <label className='block mb-2' htmlFor='duration'>
           Duration (in minutes)
         </label>
         <InputForm
-          type="string"
-          id="duration"
-          name="duration"
+          type='string'
+          id='duration'
+          name='duration'
           value={formData.duration}
           onChange={handleOnChangeDuration}
         />
 
-        <label className="block mb-2" htmlFor="releaseDate">
+        <label className='block mb-2' htmlFor='releaseDate'>
           Release Date
         </label>
         <InputForm
-          type="date"
-          id="releaseDate"
-          name="releaseDate"
+          type='date'
+          id='releaseDate'
+          name='releaseDate'
           value={formData.releaseDate}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="casts">
+        <label className='block mb-2' htmlFor='casts'>
           Casts
         </label>
         <InputForm
-          type="text"
-          id="casts"
-          name="casts"
+          type='text'
+          id='casts'
+          name='casts'
           value={formData.casts}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="writer">
+        <label className='block mb-2' htmlFor='writer'>
           Writer
         </label>
         <InputForm
-          type="text"
-          id="writer"
-          name="writer"
+          type='text'
+          id='writer'
+          name='writer'
           value={formData.writer}
           onChange={handleChange}
         />
 
-        <label className="block mb-2" htmlFor="rating">
+        <label className='block mb-2' htmlFor='rating'>
           Rating
         </label>
         <SelectForm
-          id="rating"
-          name="rating"
+          id='rating'
+          name='rating'
           value={formData.rating}
           onChange={handleChange}
         >
-          <option value="">Select...</option>
-          <option value="SU">SU</option>
-          <option value="13+">13+</option>
-          <option value="17+">17+</option>
-          <option value="21+">21+</option>
+          <option value=''>Select...</option>
+          <option value='SU'>SU</option>
+          <option value='13+'>13+</option>
+          <option value='17+'>17+</option>
+          <option value='21+'>21+</option>
         </SelectForm>
+=======
+        <h2 className="font-bold text-3xl mb-3">Edit Movie Form</h2>
 
-        <div className="flex justify-end mt-3">
-          <PrimaryButton type="submit">Submit Movie</PrimaryButton>
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="title">
+            Title <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="newTitle"
+            name="newTitle"
+            value={formData.newTitle}
+            onChange={handleChange}
+          />
+          {errors.title && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.title}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="director">
+            Director <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="director"
+            name="director"
+            value={formData.director}
+            onChange={handleChange}
+          />
+          {errors.director && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.director}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="poster">
+            Poster
+          </label>
+          <InputForm
+            type="file"
+            id="poster"
+            name="newPoster"
+            accept="image/*"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange(e)
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="synopsis">
+            Synopsis <span style={{ color: "red" }}>*</span>
+          </label>
+          <TextareaForm
+            id="synopsis"
+            name="synopsis"
+            value={formData.synopsis}
+            onChange={handleChange}
+          />
+          {errors.synopsis && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.synopsis}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="duration">
+            Duration (in minutes) <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="string"
+            id="duration"
+            name="duration"
+            value={formData.duration}
+            onChange={handleOnChangeDuration}
+          />
+          {errors.duration && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.duration}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="releaseDate">
+            Release Date <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="date"
+            id="releaseDate"
+            name="releaseDate"
+            value={formData.releaseDate}
+            onChange={handleChange}
+          />
+          {errors.releaseDate && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.releaseDate}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="casts">
+            Casts <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="casts"
+            name="casts"
+            value={formData.casts}
+            onChange={handleChange}
+          />
+          {errors.casts && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.casts}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="writer">
+            Writer <span style={{ color: "red" }}>*</span>
+          </label>
+          <InputForm
+            type="text"
+            id="writer"
+            name="writer"
+            value={formData.writer}
+            onChange={handleChange}
+          />
+          {errors.writer && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.writer}
+            </span>
+          )}
+        </div>
+
+        <div className="mb-3">
+          <label className="block mb-2" htmlFor="rating">
+            Rating <span style={{ color: "red" }}>*</span>
+          </label>
+          <SelectForm
+            id="rating"
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+          >
+            <option value="">Select...</option>
+            <option value="SU">SU</option>
+            <option value="13+">13+</option>
+            <option value="17+">17+</option>
+            <option value="21+">21+</option>
+          </SelectForm>
+          {errors.rating && (
+            <span className="mb-5" style={{ color: "red" }}>
+              {errors.rating}
+            </span>
+          )}
+        </div>
+>>>>>>> 25e0182e2ee7e9ae0055d9aa961e92be425ac008
+
+        <div className='flex justify-end mt-3'>
+          <PrimaryButton type='submit'>Submit Movie</PrimaryButton>
         </div>
       </form>
     </div>
   );
-};
-
-export default EditMovieForm;
+}

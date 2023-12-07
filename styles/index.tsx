@@ -1,7 +1,7 @@
 'use client';
 
 import { PageProps } from '@/utils/types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Page = styled.div<PageProps>`
   min-height: 100vh;
@@ -241,6 +241,9 @@ export const TheaterScreen = styled.div`
   margin: 15px 0;
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  font-weight: bolder;
 `;
 
 export const ConfirmButton = styled.button`
@@ -292,7 +295,7 @@ export const InputForm = styled.input`
   border: none;
   width: 100%;
   padding: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #fff;
   font-family: 'Inter';
   background-color: black;
@@ -350,4 +353,36 @@ export const ModalContainer = styled.div`
   padding: 2rem;
   border-radius: 5px;
   width: 40rem;
+`;
+
+export const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+interface DropdownMenuProps {
+  isOpen: boolean;
+}
+
+export const DropdownMenu = styled.ul<DropdownMenuProps>`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #131313;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+`;
+
+export const DropdownItem = styled.li`
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #28b1ad;
+  }
 `;

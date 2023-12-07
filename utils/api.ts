@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { AddMovieFormInterface, EditMovieFormInterface } from "./types";
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { AddMovieFormInterface, EditMovieFormInterface } from './types';
 
 const getNowPlayingMoviesURL: string =
   process.env.NEXT_PUBLIC_GETNOWPLAYINGMOVIES_URL!;
@@ -12,15 +12,15 @@ const getMovieDetailURL: string = process.env.NEXT_PUBLIC_GETMOVIEDETAIL_URL!;
 const getBookingSeatURL: string = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL!;
 const getRegisterURL = process.env.NEXT_PUBLIC_GETBOOKINGSEAT_URL;
 const getBookingTimeURL = process.env.NEXT_PUBLIC_GETBOOKINGTIME_URL;
-const getPaymentURL: string = process.env.NEXT_PUBLIC_PAYMENT_URL!;
+const getPaymentURL: string = process.env.NEXT_PUBLIC_GETPAYMENT_URL!;
+const addPaymentURL: string = process.env.NEXT_PUBLIC_ADDPAYMENT_URL!;
 const deleteMovieURL: string = process.env.NEXT_PUBLIC_DELETEMOVIE_URL!;
 const addMovieURL: string = process.env.NEXT_PUBLIC_ADDMOVIE_URL!;
 const updateMovieURL: string = process.env.NEXT_PUBLIC_UPDATEMOVIE_URL!;
-
+const addBookingURL = process.env.NEXT_PUBLIC_ADDBOOKING_URL;
 
 export async function GetNowPlaying() {
   const response = await fetch(getNowPlayingMoviesURL);
-  console.log(response);
   return response;
 }
 
@@ -44,14 +44,14 @@ export const postLogin = async (phoneNumber: string, password: string) => {
 
       if (currentTime - lastErrorTime > COOLDOWN_TIME) {
         toast.error(error.response?.data.message, {
-          position: "bottom-left",
+          position: 'bottom-left',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: 'dark',
         });
         lastErrorTime = currentTime;
       }
@@ -73,7 +73,6 @@ export const getMovieDetail = async (id: string) => {
     });
     return response.data;
   } catch (error: any) {
-
     return error.response?.data;
   }
 };
@@ -88,70 +87,70 @@ export const getBookingSeat = async (scheduleId: number) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw new Error("Error getting seat: " + error);
+    throw new Error('Error getting seat: ' + error);
   }
 };
 
 export const addMovie = async (formValue: AddMovieFormInterface) => {
   try {
     const formDataForApi = new FormData();
-    formDataForApi.append("posterImage", formValue.poster as File);
-    formDataForApi.append("title", formValue.title);
-    formDataForApi.append("director", formValue.director);
-    formDataForApi.append("synopsis", formValue.synopsis);
-    formDataForApi.append("duration", formValue.duration.toString());
-    formDataForApi.append("releaseDate", formValue.releaseDate);
-    formDataForApi.append("casts", formValue.casts);
-    formDataForApi.append("writer", formValue.writer);
-    formDataForApi.append("rating", formValue.rating);
+    formDataForApi.append('posterImage', formValue.poster as File);
+    formDataForApi.append('title', formValue.title);
+    formDataForApi.append('director', formValue.director);
+    formDataForApi.append('synopsis', formValue.synopsis);
+    formDataForApi.append('duration', formValue.duration.toString());
+    formDataForApi.append('releaseDate', formValue.releaseDate);
+    formDataForApi.append('casts', formValue.casts);
+    formDataForApi.append('writer', formValue.writer);
+    formDataForApi.append('rating', formValue.rating);
 
     const response = await axios.post(addMovieURL, formDataForApi, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
 
     if (response.status === 200) {
-      alert(response.data.data);
+      alert('success');
     } else {
-      console.error("Failed to upload movie:", response.statusText);
+      console.error('Failed to upload movie:', response.statusText);
     }
   } catch (error) {
-    console.error("Error during movie upload:", error);
+    console.error('Error during movie upload:', error);
   }
 };
 
 export const editMovie = async (formValue: EditMovieFormInterface) => {
   try {
     const formDataForApi = new FormData();
-    formDataForApi.append("newPoster", formValue.newPoster as File);
-    formDataForApi.append("movieID", formValue.id.toString());
-    formDataForApi.append("newTitle", formValue.newTitle);
-    formDataForApi.append("oldTitle", formValue.oldTitle);
-    formDataForApi.append("director", formValue.director);
-    formDataForApi.append("synopsis", formValue.synopsis);
-    formDataForApi.append("duration", formValue.duration.toString());
-    formDataForApi.append("releaseDate", formValue.releaseDate);
-    formDataForApi.append("casts", formValue.casts);
-    formDataForApi.append("oldPoster", formValue.oldPoster);
-    formDataForApi.append("writer", formValue.writer);
-    formDataForApi.append("rating", formValue.rating);
+    formDataForApi.append('newPoster', formValue.newPoster as File);
+    formDataForApi.append('movieID', formValue.id.toString());
+    formDataForApi.append('newTitle', formValue.newTitle);
+    formDataForApi.append('oldTitle', formValue.oldTitle);
+    formDataForApi.append('director', formValue.director);
+    formDataForApi.append('synopsis', formValue.synopsis);
+    formDataForApi.append('duration', formValue.duration.toString());
+    formDataForApi.append('releaseDate', formValue.releaseDate);
+    formDataForApi.append('casts', formValue.casts);
+    formDataForApi.append('oldPoster', formValue.oldPoster);
+    formDataForApi.append('writer', formValue.writer);
+    formDataForApi.append('rating', formValue.rating);
 
     const response = await axios.put(updateMovieURL, formDataForApi, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
 
     if (response.status === 200) {
       alert(response.data.data);
     } else {
-      console.error("Failed to upload movie:", response.statusText);
+      console.error('Failed to upload movie:', response.statusText);
     }
   } catch (error) {
-    console.error("Error during movie upload:", error);
+    console.error('Error during movie upload:', error);
   }
 };
 
 export const deleteMovie = async (movieId: number) => {
   try {
-    const url = deleteMovieURL + "/" + movieId;
+    const url = deleteMovieURL + '/' + movieId;
     const response = await axios.delete(url);
     return response.data;
   } catch (error: any) {
@@ -178,7 +177,7 @@ export const postRegister = async (
     });
     return response.data;
   } catch (error) {
-    throw new Error("Error registering you: " + error);
+    throw new Error('Error registering you: ' + error);
   }
 };
 
@@ -187,21 +186,50 @@ export async function GetBookingTime(id: string) {
     const response = await fetch(`${getBookingTimeURL}${id}`);
     return response;
   } catch (error) {
-    console.error("Error fetching schedules:", error);
+    console.error('Error fetching schedules:', error);
   }
 }
 
-export async function GetPayment(BookingHeaderID: number) {
-  try{
-    console.log("test");
+export async function PostBooking(
+  scheduleID: number,
+  userID: string,
+  seatIDs: number[]
+) {
+  try {
+    const response = await axios.post(`${addBookingURL}`, {
+      scheduleID,
+      userID,
+      seatID: seatIDs,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function GetPayment(bookingHeaderId: number) {
+  try {
     const response = await axios.get(getPaymentURL, {
       params: {
-        bookingHeaderID: BookingHeaderID,
+        bookingHeaderID: bookingHeaderId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Payment Error: ', error);
+  }
+}
+
+export async function AddPayment(paymentId: number) {
+  try {
+    const response = await axios.put(addPaymentURL, null, {
+      params: {
+        paymentID: paymentId,
       },
     });
     console.log(response.data);
-    return response;
-  }catch (error) {
+    return response.data;
+  } catch (error) {
     console.error('Payment Error: ', error);
   }
 }

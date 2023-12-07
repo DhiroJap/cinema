@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS=\"--use-openssl-ca\" next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^8.1.3",
+    "react-simple-typewriter": "^5.0.1",
     "react-toastify": "^9.1.3",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.1",
