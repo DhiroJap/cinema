@@ -98,7 +98,7 @@ export default function AddMovieForm() {
     if (areAllErrorsEmpty) {
       try {
         const response = await addMovie(formData);
-        if (response.data === null) {
+        if (response.data != null) {
           toast.error(response.message, {
             position: "bottom-left",
             autoClose: 5000,
