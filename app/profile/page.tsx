@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ProfilePage() {
   return (
-    <Page display='flex'>
+    <Page display='flex' $justifyContent='center' $alignItems='center'>
       <ProfileCard />
     </Page>
   );
